@@ -70,6 +70,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         vistaDatosGinecologicos1 = new Vistas.VistaDatosGinecologicos();
         jPanel7 = new javax.swing.JPanel();
         vistaEstiloVida1 = new Vistas.VistaEstiloVida();
+        jPanel8 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -159,10 +160,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Datos Ginecologicos", jPanel5);
 
-        jPanel7.setLayout(new java.awt.GridLayout());
+        jPanel7.setLayout(new java.awt.GridLayout(1, 0));
         jPanel7.add(vistaEstiloVida1);
 
         jTabbedPane2.addTab("Estilo de vida", jPanel7);
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 714, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 441, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("Consumo de Sustancias", jPanel8);
 
         jLabel4.setText("Nutrición y Fitness MX");
 
@@ -394,6 +408,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
     private Vistas.VistaAntecedenteFamiliar vistaAntecedenteFamiliar1;
