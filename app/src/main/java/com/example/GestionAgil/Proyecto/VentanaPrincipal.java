@@ -64,6 +64,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         cRUDPacientes1 = new Vistas.VistaPacientes();
         jPanel2 = new javax.swing.JPanel();
         cRUDAntecedentesMedicos1 = new Vistas.VistaAntecedentesMedicos();
+        jPanel4 = new javax.swing.JPanel();
+        vistaAntecedenteFamiliar1 = new Vistas.VistaAntecedenteFamiliar();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -116,7 +118,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(24, 24, 24)
                 .addComponent(jButton1)
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,6 +144,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel2.add(cRUDAntecedentesMedicos1);
 
         jTabbedPane2.addTab("Antecedentes Medicos", jPanel2);
+
+        jPanel4.setLayout(new java.awt.GridLayout());
+        jPanel4.add(vistaAntecedenteFamiliar1);
+
+        jTabbedPane2.addTab("Antecedentes Familiar", jPanel4);
 
         jLabel4.setText("Nutrición y Fitness MX");
 
@@ -216,7 +223,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
+                .addComponent(jTabbedPane2)
                 .addContainerGap())
         );
 
@@ -369,8 +376,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
+    private Vistas.VistaAntecedenteFamiliar vistaAntecedenteFamiliar1;
     // End of variables declaration//GEN-END:variables
 }
