@@ -4,7 +4,7 @@
  */
 package Vistas;
 
-import Controladores.ControlladorPaciente;
+import Controladores.ControladorPaciente;
 import Entidades.EntidadPaciente;
 import ModelosTablas.ModeloTablaPacientes;
 import Validatores.ValidadorPacientes;
@@ -69,7 +69,7 @@ public class VistaPacientes extends javax.swing.JPanel {
     public void refrescar() {
         try {
             // Obtiene todos los caracteristicas desde el servicio
-            ArrayList<EntidadPaciente> datos = ControlladorPaciente.PedirTodos();
+            ArrayList<EntidadPaciente> datos = ControladorPaciente.PedirTodos();
 
             // Establece los nuevos datos en el modelo de la tabla
             model.setDatos(datos);
@@ -398,7 +398,7 @@ public class VistaPacientes extends javax.swing.JPanel {
 
         try {
             // Llama al servicio para insertar el nuevo paciente en la base de datos
-            ControlladorPaciente.Alta(nuevo);
+            ControladorPaciente.Alta(nuevo);
             // Muestra un mensaje de éxito si el paciente se agrega correctamente
             JOptionPane.showMessageDialog(this, "Paciente agregado exitosamente", "Operación exitosa", JOptionPane.INFORMATION_MESSAGE);
         } catch (IllegalAccessError ex) {
@@ -444,7 +444,7 @@ public class VistaPacientes extends javax.swing.JPanel {
         // Si el usuario selecciona "Sí", se procede a la eliminación
         try {
             // Llama al controlador para eliminar el paciente seleccionado de la base de datos
-            ControlladorPaciente.Eliminar(seleccionado);
+            ControladorPaciente.Eliminar(seleccionado);
 
             // Muestra un mensaje de éxito si el paciente se elimina correctamente
             JOptionPane.showMessageDialog(this, "Paciente eliminado exitosamente", "Operación exitosa", JOptionPane.INFORMATION_MESSAGE);
@@ -512,7 +512,7 @@ public class VistaPacientes extends javax.swing.JPanel {
 
         try {
             // Llama al controlador para actualizar el paciente en la base de datos
-            ControlladorPaciente.Actualizar(seleccionado);
+            ControladorPaciente.Actualizar(seleccionado);
 
             // Muestra un mensaje de éxito si la actualización fue exitosa
             JOptionPane.showMessageDialog(this, "Paciente editado exitosamente", "Operación exitosa", JOptionPane.INFORMATION_MESSAGE);
@@ -542,7 +542,7 @@ public class VistaPacientes extends javax.swing.JPanel {
             int idPaciente = Integer.parseInt(JTA_BuscaID.getText());
 
             // Llama al método para obtener el paciente por ID
-            EntidadPaciente paciente = ControlladorPaciente.PedirPorId(idPaciente);
+            EntidadPaciente paciente = ControladorPaciente.PedirPorId(idPaciente);
 
             if (paciente != null) {
                 // Si se encuentra el paciente, actualiza los datos en el modelo de la tabla
@@ -579,7 +579,7 @@ public class VistaPacientes extends javax.swing.JPanel {
             String nombrePaciente = JTA_BuscaNombre.getText();
 
             // Llama al controlador para obtener los pacientes por nombre
-            ArrayList<EntidadPaciente> pacientes = ControlladorPaciente.PedirPorNombre(nombrePaciente);
+            ArrayList<EntidadPaciente> pacientes = ControladorPaciente.PedirPorNombre(nombrePaciente);
 
             if (!pacientes.isEmpty()) {
                 // Si se encuentran pacientes, actualiza los datos en el modelo de la tabla

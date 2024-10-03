@@ -1,7 +1,7 @@
 package Validatores;
 
 import Controladores.ControladorDatosGinecologicos;
-import Controladores.ControlladorPaciente;
+import Controladores.ControladorPaciente;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -43,7 +43,7 @@ public class ValidadorDatosGinecologicos {
     public static boolean idPacienteExisteEnBaseDatos(int id, String nombreEntidad, String nombreCampo) {
         try {
             // Aquí iría la lógica para verificar si el ID existe en la base de datos
-            boolean existe = ControlladorPaciente.existePacientePorId(id); 
+            boolean existe = ControladorPaciente.existePacientePorId(id); 
             if (!existe) {
                 JOptionPane.showMessageDialog(null, "El " + nombreCampo + " no existe en " + nombreEntidad, "Error de validación", JOptionPane.ERROR_MESSAGE);
                 return false;

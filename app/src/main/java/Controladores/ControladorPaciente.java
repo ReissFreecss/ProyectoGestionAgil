@@ -16,7 +16,7 @@ import java.util.ArrayList;
  *
  * @author darkd
  */
-public class ControlladorPaciente {
+public class ControladorPaciente {
 
     // Método para obtener todos los Caracteristica de la base de datos
     public static ArrayList<EntidadPaciente> PedirTodos() throws IllegalAccessError, SQLException, IOException {

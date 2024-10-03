@@ -5,7 +5,7 @@
 package Vistas;
 
 import Controladores.ControladorAntecedentesFamiliares;
-import Controladores.ControlladorPaciente;
+import Controladores.ControladorPaciente;
 import Entidades.EntidadAntecedentesFamilares;
 import ModelosTablas.ModeloTablaAntecedentesFamiliares;
 import Validatores.ValidadorAntecedentesFamiliares;

@@ -1,6 +1,6 @@
 package Validatores;
 
-import Controladores.ControlladorPaciente;
+import Controladores.ControladorPaciente;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -38,7 +38,7 @@ public class ValidadorPacientes {
     // Valida si el ID de un paciente existe en la base de datos
     public static boolean idPacienteExisteEnBaseDatos(int id, String nombreCampo) {
         try {
-            boolean existe = ControlladorPaciente.existePacientePorId(id);
+            boolean existe = ControladorPaciente.existePacientePorId(id);
             if (!existe) {
                 JOptionPane.showMessageDialog(null, "El " + nombreCampo + " no existe en la base de datos", "Error de validación", JOptionPane.ERROR_MESSAGE);
                 return false;
