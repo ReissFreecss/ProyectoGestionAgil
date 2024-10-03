@@ -66,6 +66,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         cRUDAntecedentesMedicos1 = new Vistas.VistaAntecedentesMedicos();
         jPanel4 = new javax.swing.JPanel();
         vistaAntecedenteFamiliar1 = new Vistas.VistaAntecedenteFamiliar();
+        jPanel5 = new javax.swing.JPanel();
+        vistaDatosGinecologicos1 = new Vistas.VistaDatosGinecologicos();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -145,10 +147,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Antecedentes Medicos", jPanel2);
 
-        jPanel4.setLayout(new java.awt.GridLayout());
+        jPanel4.setLayout(new java.awt.GridLayout(1, 0));
         jPanel4.add(vistaAntecedenteFamiliar1);
 
         jTabbedPane2.addTab("Antecedentes Familiar", jPanel4);
+
+        jPanel5.setLayout(new java.awt.GridLayout());
+        jPanel5.add(vistaDatosGinecologicos1);
+
+        jTabbedPane2.addTab("Datos Ginecologicos", jPanel5);
 
         jLabel4.setText("Nutrición y Fitness MX");
 
@@ -377,9 +384,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
     private Vistas.VistaAntecedenteFamiliar vistaAntecedenteFamiliar1;
+    private Vistas.VistaDatosGinecologicos vistaDatosGinecologicos1;
     // End of variables declaration//GEN-END:variables
 }
