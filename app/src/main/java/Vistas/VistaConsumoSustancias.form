@@ -211,19 +211,14 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="JTA_Tipo" alignment="0" max="32767" attributes="0"/>
                       <Component id="JTA_Sustancia" alignment="0" max="32767" attributes="0"/>
+                      <Component id="JS_Frecuencia" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="JS_Cantidad" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="JS_Frecuencia" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="JS_Cantidad" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="JTA_IDPaciente" min="-2" pref="150" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Component id="JTA_IDConsumoSustancia" min="-2" pref="150" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="JTA_IDPaciente" min="-2" pref="150" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Component id="JTA_IDConsumoSustancia" min="-2" pref="150" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>

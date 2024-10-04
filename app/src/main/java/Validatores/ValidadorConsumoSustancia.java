@@ -30,15 +30,6 @@ public class ValidadorConsumoSustancia {
         return true;
     }
 
-    // Valida si una fecha no es nula
-    public static boolean fechaNoNula(java.util.Date fecha, String nombreCampo) {
-        if (fecha == null) {
-            JOptionPane.showMessageDialog(null, "Por favor, seleccione una fecha para: " + nombreCampo, "Error de validación", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        return true;
-    }
-
     // Valida si un ID existe en la base de datos
     public static boolean idPacienteExisteEnBaseDatos(int id, String nombreEntidad, String nombreCampo) {
         try {

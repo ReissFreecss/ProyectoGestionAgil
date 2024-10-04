@@ -34,21 +34,33 @@ public class VistaConsumoSustancias extends javax.swing.JPanel {
         return ObjSeleccionado;
     }
 
-    // Método para establecer el objeto de consumo de sustancias seleccionado y actualizar los campos de texto
     public void setObjSeleccionado(EntidadConsumoSustancias ObjSeleccionado) {
         this.ObjSeleccionado = ObjSeleccionado;
 
-        // Si hay un objeto seleccionado, actualizar los campos de texto
         if (this.ObjSeleccionado != null) {
             JTA_IDConsumoSustancia.setText(String.valueOf(this.ObjSeleccionado.getIdConsumoSustancia())); // Mostrar el ID del consumo
             JTA_IDPaciente.setText(String.valueOf(this.ObjSeleccionado.getIdPaciente())); // Mostrar el ID del paciente
             JTA_Sustancia.setText(this.ObjSeleccionado.getSustancia()); // Sustancia
-            JTA_Tipo.setText(this.ObjSeleccionado.getTipo()); // Frecuencia
-            JS_Frecuencia.setValue(this.ObjSeleccionado.getFrecuencia()); // Camtodad numerica
-            JS_Cantidad.setValue(this.ObjSeleccionado.getCantidad()); // Camtodad numerica
-        } // Si no hay objeto seleccionado, limpiar los campos de texto
-        else {
-            limpiarFormulario();
+            JTA_Tipo.setText(this.ObjSeleccionado.getTipo()); // Tipo
+
+            // Configurar la frecuencia para el JSlider
+            try {
+                JS_Frecuencia.setValue(this.ObjSeleccionado.getFrecuencia()); // Asignar frecuencia al slider
+            } catch (IllegalArgumentException e) {
+                JOptionPane.showMessageDialog(this, "Frecuencia no permitida", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+            // Convertir y asignar el valor de cantidad al JSpinner
+            try {
+                int cantidad = Integer.parseInt(this.ObjSeleccionado.getCantidad().toString());
+                JS_Cantidad.setValue(cantidad); // Asignar cantidad al spinner
+            } catch (NumberFormatException e) {
+                JS_Cantidad.setValue(0); // Valor por defecto si la conversión falla
+                JOptionPane.showMessageDialog(this, "Valor de cantidad no válido, se ha establecido a 0", "Error", JOptionPane.WARNING_MESSAGE);
+            }
+
+        } else {
+            limpiarFormulario(); // Limpiar los campos si no hay objeto seleccionado
         }
     }
 
@@ -274,17 +286,14 @@ public class VistaConsumoSustancias extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(JTA_Tipo)
                     .addComponent(JTA_Sustancia)
+                    .addComponent(JS_Frecuencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JS_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JS_Frecuencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JS_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(JTA_IDPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JTA_IDConsumoSustancia, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(JTA_IDPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JTA_IDConsumoSustancia, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(106, 106, 106))
         );
         jPanel2Layout.setVerticalGroup(
@@ -362,7 +371,6 @@ public class VistaConsumoSustancias extends javax.swing.JPanel {
             return;
         }
 
-
         // Pregunta de confirmación al usuario
         int confirmacion = JOptionPane.showConfirmDialog(
                 this,
@@ -377,14 +385,14 @@ public class VistaConsumoSustancias extends javax.swing.JPanel {
             return; // No se realiza el registro
         }
 
-        // Si todas las validaciones son correctas, crea el objeto y procede con la operación
+        // Corrige la conversión de cantidad
         EntidadConsumoSustancias nuevoConsumo = new EntidadConsumoSustancias(
                 null, // El ID del consumo será generado automáticamente
                 idPaciente,
                 JTA_Sustancia.getText(),
                 JTA_Tipo.getText(),
-                (int) JS_Frecuencia.getValue(), // La cantidad obtenida del JSpinner
-                 JS_Cantidad.getValue()
+                (Integer) JS_Frecuencia.getValue(), // Frecuencia es un Integer
+                String.valueOf(JS_Cantidad.getValue()) // Convertimos el valor a String
         );
 
         try {
@@ -400,7 +408,7 @@ public class VistaConsumoSustancias extends javax.swing.JPanel {
             Logger.getLogger(VistaConsumoSustancias.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    // Actualiza la tabla o vista después de la operación
+        // Actualiza la tabla o vista después de la operación
         refrescar();
     }//GEN-LAST:event_btnAgregar_ActionPerformed
 
@@ -409,24 +417,24 @@ public class VistaConsumoSustancias extends javax.swing.JPanel {
     }//GEN-LAST:event_btnRefrescar_ActionPerformed
 
     private void btnEliminar_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminar_ActionPerformed
-        // Obtiene el antecedente médico seleccionado
-        EntidadAntecedentesMedicos seleccionado = getObjSeleccionado();
+        // Obtiene el consumo de sustancia seleccionado
+        EntidadConsumoSustancias seleccionado = getObjSeleccionado();
 
-        // Verifica si hay un antecedente médico seleccionado
+        // Verifica si hay un consumo de sustancia seleccionado
         if (seleccionado == null) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un antecedente médico para eliminar.", "No seleccionado", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un consumo de sustancia para eliminar.", "No seleccionado", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         // Validar que el ID del paciente existe en la base de datos
-        if (!ValidadorAntecedentesMedicos.idPacienteExisteEnBaseDatos(seleccionado.getIdPaciente(), "Antecedentes Médicos", "ID del paciente")) {
+        if (!ValidadorConsumoSustancia.idPacienteExisteEnBaseDatos(seleccionado.getIdPaciente(), "Consumo Sustancias", "ID del paciente")) {
             return; // Salir si el ID no existe
         }
 
         // Pregunta de confirmación al usuario
         int confirmacion = JOptionPane.showConfirmDialog(
                 this,
-                "¿Está seguro que desea eliminar el antecedente médico de " + seleccionado.getEnfermedadDiagnosticada() + "?",
+                "¿Está seguro que desea eliminar el consumo de sustancia de " + seleccionado.getSustancia() + "?",
                 "Confirmación de eliminación",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE
@@ -439,11 +447,11 @@ public class VistaConsumoSustancias extends javax.swing.JPanel {
 
         // Si el usuario selecciona "Sí", se procede a la eliminación
         try {
-            // Llama al servicio para eliminar el antecedente médico seleccionado de la base de datos
-            ControladorAntecedentesMedicos.Eliminar(seleccionado);
+            // Llama al servicio para eliminar el consumo de sustancia seleccionado de la base de datos
+            ControladorConsumoSustancias.Eliminar(seleccionado);
 
             // Muestra un mensaje de éxito si la eliminación fue exitosa
-            JOptionPane.showMessageDialog(this, "El antecedente médico ha sido eliminado exitosamente.", "Operación exitosa", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El consumo de sustancia ha sido eliminado exitosamente.", "Operación exitosa", JOptionPane.INFORMATION_MESSAGE);
         } catch (IllegalAccessError ex) {
             // Muestra un mensaje de error si ocurre un IllegalAccessError
             JOptionPane.showMessageDialog(this, ex.getMessage(), "IllegalArgumentException", JOptionPane.ERROR_MESSAGE);
@@ -452,26 +460,25 @@ public class VistaConsumoSustancias extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error de SQL", JOptionPane.ERROR_MESSAGE);
         }
 
-        // Refresca los datos de la tabla para reflejar la eliminación del antecedente médico
+        // Refresca los datos de la tabla para reflejar la eliminación del consumo de sustancia
         refrescar();
     }//GEN-LAST:event_btnEliminar_ActionPerformed
 
     private void btnEditar_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditar_ActionPerformed
-        // Obtiene el antecedente médico seleccionado
-        EntidadAntecedentesMedicos seleccionado = getObjSeleccionado();
+        // Obtiene el consumo de sustancia seleccionado
+        EntidadConsumoSustancias seleccionado = getObjSeleccionado();
 
-        // Verifica si hay un antecedente médico seleccionado
+        // Verifica si hay un consumo de sustancia seleccionado
         if (seleccionado == null) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un antecedente médico para editar.", "No seleccionado", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un consumo de sustancia para editar.", "No seleccionado", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        // Validación de campos vacíos usando ValidadorDatos
-        if (!ValidadorAntecedentesMedicos.campoNoVacio(JTA_IDPaciente.getText(), "ID Paciente")
-                || !ValidadorAntecedentesMedicos.campoNoVacio(JTA_Sustancia.getText(), "Enfermedad diagnosticada")
-                || !ValidadorAntecedentesMedicos.campoNoVacio(JTA_Tipo.getText(), "Medicamento")
-                || JD_FechaDesparasitacion.getDate() == null
-                || !ValidadorAntecedentesMedicos.campoNoVacio(JTA_IntoleraciaAlergia.getText(), "Intolerancia o Alergia")) {
+        // Validación de campos vacíos usando ValidadorConsumoSustancias
+        if (!ValidadorConsumoSustancia.campoNoVacio(JTA_IDPaciente.getText(), "ID Paciente")
+                || !ValidadorConsumoSustancia.campoNoVacio(JTA_Sustancia.getText(), "Sustancia")
+                || !ValidadorConsumoSustancia.campoNoVacio(JTA_Tipo.getText(), "Tipo")
+                || !ValidadorConsumoSustancia.campoNoVacio(String.valueOf(JS_Cantidad.getValue()), "Cantidad")) {
             return; // Sale del método si alguna validación falla
         }
 
@@ -488,24 +495,22 @@ public class VistaConsumoSustancias extends javax.swing.JPanel {
             return;
         }
 
-        // Verifica si el paciente existe en la base de datos usando ValidadorDatos
-        if (!ValidadorAntecedentesMedicos.idPacienteExisteEnBaseDatos(idPaciente, "Paciente", "ID del paciente")) {
+        // Verifica si el paciente existe en la base de datos usando ValidadorConsumoSustancias
+        if (!ValidadorConsumoSustancia.idPacienteExisteEnBaseDatos(idPaciente, "Paciente", "ID del paciente")) {
             return; // Sale si el ID no existe
         }
 
-        // Actualiza los datos del antecedente médico seleccionado con los valores de los campos de texto
+        // Actualiza los datos del consumo de sustancia seleccionado con los valores de los campos de texto
         seleccionado.setIdPaciente(idPaciente);
-        seleccionado.setEnfermedadDiagnosticada(JTA_Sustancia.getText());
-        seleccionado.setMedicamentos(JTA_Tipo.getText());
-        seleccionado.setInicioMedicación(new java.sql.Date(JD_FechaMedicacion.getDate().getTime()));
-        seleccionado.setUltimaDesparasitacion(new java.sql.Date(JD_FechaDesparasitacion.getDate().getTime()));
-        seleccionado.setUltimaRealizacionLaboratorios(new java.sql.Date(JD_FechaLaboratorios.getDate().getTime()));
-        seleccionado.setAlergiaIntoleranciaAlimentos(JTA_IntoleraciaAlergia.getText());
+        seleccionado.setSustancia(JTA_Sustancia.getText());
+        seleccionado.setTipo(JTA_Tipo.getText());
+        seleccionado.setFrecuencia((Integer) JS_Frecuencia.getValue()); // Asigna la fecha de consumo
+        seleccionado.setCantidad(String.valueOf(JS_Cantidad.getValue())); // Asigna la cantidad consumida
 
         try {
-            // Llama al servicio para actualizar el antecedente médico en la base de datos
-            ControladorAntecedentesMedicos.Actualizar(seleccionado);
-            JOptionPane.showMessageDialog(this, "Los datos del antecedente médico han sido actualizados con éxito.", "Actualización exitosa", JOptionPane.INFORMATION_MESSAGE);
+            // Llama al servicio para actualizar el consumo de sustancia en la base de datos
+            ControladorConsumoSustancias.Actualizar(seleccionado);
+            JOptionPane.showMessageDialog(this, "Los datos del consumo de sustancia han sido actualizados con éxito.", "Actualización exitosa", JOptionPane.INFORMATION_MESSAGE);
         } catch (IllegalAccessError ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "IllegalAccessError", JOptionPane.ERROR_MESSAGE);
         } catch (SQLException ex) {
@@ -521,36 +526,36 @@ public class VistaConsumoSustancias extends javax.swing.JPanel {
     private void btnBuscaID_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaID_ActionPerformed
         try {
             // Valida si el campo de ID no está vacío
-            if (!ValidadorAntecedentesMedicos.campoNoVacio(JTA_BuscaID.getText(), "ID Antecedente Médico")) {
+            if (!ValidadorConsumoSustancia.campoNoVacio(JTA_BuscaID.getText(), "ID Consumo de Sustancias")) {
                 return;
             }
 
             // Convierte el texto del campo ID a un número entero
-            int idAntecedente;
+            int idConsumo;
             try {
-                idAntecedente = Integer.parseInt(JTA_BuscaID.getText());
+                idConsumo = Integer.parseInt(JTA_BuscaID.getText());
             } catch (NumberFormatException ex) {
                 // Muestra un mensaje de error si el ID no es un número válido
-                JOptionPane.showMessageDialog(this, "El ID del antecedente médico debe ser un número entero", "Error de formato", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "El ID del consumo de sustancia debe ser un número entero", "Error de formato", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            // Verifica si el antecedente médico existe en la base de datos usando la clase ValidadorDatos
-            if (!ValidadorAntecedentesMedicos.idExisteEnBaseDatos(idAntecedente, "Antecedentes Médicos", "ID del antecedente médico")) {
+            // Verifica si el consumo de sustancia existe en la base de datos usando la clase ValidadorConsumoSustancias
+            if (!ValidadorConsumoSustancia.idExisteEnBaseDatos(idConsumo, "Consumo de Sustancias", "ID del consumo de sustancia")) {
                 return;
             }
 
-            // Llama al método para obtener el antecedente médico por ID
-            EntidadAntecedentesMedicos antecedente = ControladorAntecedentesMedicos.PedirAntecedentePorId(idAntecedente);
+            // Llama al método para obtener el consumo de sustancia por ID
+            EntidadConsumoSustancias consumo = ControladorConsumoSustancias.PedirConsumoPorId(idConsumo);
 
-            // Verifica si se obtuvo el antecedente correctamente y actualiza la tabla
-            if (antecedente != null) {
-                ArrayList<EntidadAntecedentesMedicos> datos = new ArrayList<>();
-                datos.add(antecedente);
-                model.setDatos(datos);
+            // Verifica si se obtuvo el consumo correctamente y actualiza la tabla
+            if (consumo != null) {
+                ArrayList<EntidadConsumoSustancias> datos = new ArrayList<>();
+                datos.add(consumo);
+                model.setDatos(datos); // Actualiza la tabla con los datos obtenidos
             } else {
-                // Si no se encuentra el antecedente, muestra un mensaje de advertencia
-                JOptionPane.showMessageDialog(this, "No se encontraron antecedentes médicos con ese ID", "Paciente no encontrado", JOptionPane.INFORMATION_MESSAGE);
+                // Si no se encuentra el consumo, muestra un mensaje de advertencia
+                JOptionPane.showMessageDialog(this, "No se encontraron registros de consumo de sustancias con ese ID", "Registro no encontrado", JOptionPane.INFORMATION_MESSAGE);
             }
 
         } catch (SQLException ex) {
@@ -564,40 +569,41 @@ public class VistaConsumoSustancias extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error de conexión", JOptionPane.ERROR_MESSAGE);
         }
 
-        limpiarFormulario(); // Limpia los campos del formulario después de la búsqueda
+        // Limpia los campos del formulario después de la búsqueda
+        limpiarFormulario();
     }//GEN-LAST:event_btnBuscaID_ActionPerformed
 
     private void btnBuscaPaciente_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaPaciente_ActionPerformed
         try {
-            // Valida si el campo de ID no está vacío
-            if (!ValidadorAntecedentesMedicos.campoNoVacio(JTA_BuscaIDPaciente.getText(), "ID Paciente")) {
+            // Valida si el campo de ID del paciente no está vacío
+            if (!ValidadorConsumoSustancia.campoNoVacio(JTA_BuscaIDPaciente.getText(), "ID Paciente")) {
                 return;
             }
 
-            // Convierte el texto del campo ID a un número entero
+            // Convierte el texto del campo ID del paciente a un número entero
             int idPaciente;
             try {
                 idPaciente = Integer.parseInt(JTA_BuscaIDPaciente.getText());
             } catch (NumberFormatException ex) {
-                // Muestra un mensaje de error si el ID no es un número válido
-                JOptionPane.showMessageDialog(this, "El ID Paciente debe ser un número entero", "Error de formato", JOptionPane.ERROR_MESSAGE);
+                // Muestra un mensaje de error si el ID del paciente no es un número válido
+                JOptionPane.showMessageDialog(this, "El ID del paciente debe ser un número entero", "Error de formato", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
             // Valida si el ID del paciente existe en la base de datos
-            if (!ValidadorAntecedentesMedicos.idPacienteExisteEnBaseDatos(idPaciente, "Antecedentes Médicos", "ID del paciente")) {
+            if (!ValidadorConsumoSustancia.idPacienteExisteEnBaseDatos(idPaciente, "Consumo de Sustancias", "ID del paciente")) {
                 return;
             }
 
-            // Llama al método para obtener los antecedentes por ID del paciente
-            ArrayList<EntidadAntecedentesMedicos> antecedentes = ControladorAntecedentesMedicos.PedirAntecedentesPorIdPaciente(idPaciente);
+            // Llama al método para obtener los consumos de sustancias por ID del paciente
+            ArrayList<EntidadConsumoSustancias> consumos = ControladorConsumoSustancias.PedirConsumoPorIdPaciente(idPaciente);
 
-            // Si se encuentran antecedentes, actualiza los datos en la tabla
-            if (!antecedentes.isEmpty()) {
-                model.setDatos(antecedentes);
+            // Si se encuentran consumos, actualiza los datos en la tabla
+            if (!consumos.isEmpty()) {
+                model.setDatos(consumos);
             } else {
-                // Si no se encuentran antecedentes, muestra un mensaje
-                JOptionPane.showMessageDialog(this, "No se encontraron antecedentes para el paciente con ese ID", "Paciente no encontrado", JOptionPane.INFORMATION_MESSAGE);
+                // Si no se encuentran consumos, muestra un mensaje
+                JOptionPane.showMessageDialog(this, "No se encontraron consumos para el paciente con ese ID", "Paciente no encontrado", JOptionPane.INFORMATION_MESSAGE);
             }
 
         } catch (SQLException ex) {
@@ -612,7 +618,8 @@ public class VistaConsumoSustancias extends javax.swing.JPanel {
             Logger.getLogger(VistaConsumoSustancias.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        limpiarFormulario(); // Limpia los campos del formulario después de la búsqueda
+        // Limpia los campos del formulario después de la búsqueda
+        limpiarFormulario();
     }//GEN-LAST:event_btnBuscaPaciente_ActionPerformed
 
 

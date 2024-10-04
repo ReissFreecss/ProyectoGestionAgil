@@ -19,7 +19,7 @@ public class ModeloTablaConsumoSustancias extends AbstractTableModel {
     // Tipos de datos de cada columna
     Class<?> colClasses[] = {
         Integer.class, Integer.class, String.class,
-        String.class, Date.class,
+        String.class, Integer.class,
         String.class
     };
 

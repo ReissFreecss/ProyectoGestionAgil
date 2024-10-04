@@ -71,6 +71,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         vistaEstiloVida1 = new Vistas.VistaEstiloVida();
         jPanel8 = new javax.swing.JPanel();
+        vistaConsumoSustancias1 = new Vistas.VistaConsumoSustancias();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -165,16 +166,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Estilo de vida", jPanel7);
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 714, Short.MAX_VALUE)
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 441, Short.MAX_VALUE)
-        );
+        jPanel8.setLayout(new java.awt.GridLayout());
+        jPanel8.add(vistaConsumoSustancias1);
 
         jTabbedPane2.addTab("Consumo de Sustancias", jPanel8);
 
@@ -412,6 +405,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
     private Vistas.VistaAntecedenteFamiliar vistaAntecedenteFamiliar1;
+    private Vistas.VistaConsumoSustancias vistaConsumoSustancias1;
     private Vistas.VistaDatosGinecologicos vistaDatosGinecologicos1;
     private Vistas.VistaEstiloVida vistaEstiloVida1;
     // End of variables declaration//GEN-END:variables
