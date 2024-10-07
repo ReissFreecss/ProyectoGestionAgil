@@ -4,12 +4,10 @@
  */
 package Vistas;
 
-import Controladores.ControladorAntecedentesFamiliares;
-import Controladores.ControladorPaciente;
-import Entidades.EntidadAntecedentesFamilares;
-import ModelosTablas.ModeloTablaAntecedentesFamiliares;
-import Validatores.ValidadorAntecedentesFamiliares;
-import java.io.File;
+import Controladores.ControladorComidas;
+import Entidades.EntidadComidas;
+import ModelosTablas.ModeloTablaComidas;
+import Validatores.ValidadorComidas;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -23,50 +21,58 @@ import javax.swing.event.ListSelectionListener;
  *
  * @author Vivara
  */
-public class VistaAntecedenteFamiliar extends javax.swing.JPanel {
+public class VistaComidas extends javax.swing.JPanel {
 
-    // Variable para el modelo de la tabla de videojuegos
-    private ModeloTablaAntecedentesFamiliares model;
+    // Variable para el modelo de la tabla de Comidas
+    private ModeloTablaComidas model;
 
-    // Variable para el objeto seleccionado de tipo EntityAntecedentesMedicos
-    private EntidadAntecedentesFamilares ObjSeleccionado = null;
+    // Variable para el objeto seleccionado de tipo EntidadComidas
+    private EntidadComidas ObjSeleccionado = null;
 
     // Método para obtener el objeto seleccionado
-    public EntidadAntecedentesFamilares getObjSeleccionado() {
+    public EntidadComidas getObjSeleccionado() {
         return ObjSeleccionado;
     }
 
-    // Método para establecer el objeto de antecedente médico seleccionado y actualizar los campos de texto
-    public void setObjSeleccionado(EntidadAntecedentesFamilares ObjSeleccionado) {
+    // Método para establecer el objeto de comida seleccionado y actualizar los campos de texto
+    public void setObjSeleccionado(EntidadComidas ObjSeleccionado) {
         this.ObjSeleccionado = ObjSeleccionado;
 
         // Si hay un objeto seleccionado, actualizar los campos de texto
         if (this.ObjSeleccionado != null) {
-            JTA_IDAF.setText(String.valueOf(this.ObjSeleccionado.getIdAntecedenteFamiliar())); // Mostrar el ID del antecedente médico
+            JTA_BuscaID.setText(String.valueOf(this.ObjSeleccionado.getIdComidas())); // Mostrar el ID de la comida
             JTA_IDPaciente.setText(String.valueOf(this.ObjSeleccionado.getIdPaciente())); // Mostrar el ID del paciente
-            JTA_Parentezco.setText(this.ObjSeleccionado.getParentezco()); // Enfermedad diagnosticada
-            JTA_Enfermedad.setText(this.ObjSeleccionado.getEnfermedadDiagnosticada()); // Medicamentos
-            JTA_IntoleraciaAlergia.setText(this.ObjSeleccionado.getAlergiasMedicamentos()); // Alergias o intolerancias alimentarias
-        } // Si no hay objeto seleccionado, limpiar los campos de texto
-        else {
+            CB_Comida.setSelectedItem(this.ObjSeleccionado.getComida()); // Tipo de comida (Desayuno, Comida, Cena)
+            JTA_Horario.setText(this.ObjSeleccionado.getHorario()); // Horario de la comida
+            JTA_Platillo.setText(this.ObjSeleccionado.getPlatillo()); // Platillo
+            JTA_Ingredientes.setText(this.ObjSeleccionado.getIngredientes()); // Ingredientes
+            JTA_Cantidad.setText(this.ObjSeleccionado.getCantidad()); // Cantidad de comida
+            CB_ComidaCalle.setSelectedItem(this.ObjSeleccionado.getComeCalle()); // Si come en la calle
+            SP_FrecienciaSemanal.setValue(this.ObjSeleccionado.getFrecuenciaComidaCalle()); // Frecuencia de comida callejera
+
+        } else { // Si no hay objeto seleccionado, limpiar los campos de texto
             limpiarFormulario();
         }
     }
 
-    // Método para limpiar los campos del formulario de antecedentes médicos
+    // Método para limpiar el formulario
     private void limpiarFormulario() {
-        JTA_IDAF.setText(""); // Limpiar el campo ID de antecedente médico
-        JTA_IDPaciente.setText(""); // Limpiar el campo ID de paciente
-        JTA_Parentezco.setText(""); // Limpiar el campo enfermedad diagnosticada
-        JTA_Enfermedad.setText(""); // Limpiar el campo medicamentos
-        JTA_IntoleraciaAlergia.setText(""); // Limpiar el campo de alergias o intolerancias alimentarias
+        JTA_BuscaID.setText("");
+        JTA_IDPaciente.setText("");
+        CB_Comida.setSelectedIndex(0); // Restablecer el comboBox a la primera opción
+        JTA_Horario.setText("");
+        JTA_Platillo.setText("");
+        JTA_Ingredientes.setText("");
+        JTA_Cantidad.setText("");
+        CB_ComidaCalle.setSelectedIndex(0); // Restablecer si come en calle
+        SP_FrecienciaSemanal.setValue(0); // Restablecer la frecuencia semanal
     }
 
-    // Método para refrescar los datos de la tabla de caracteristicas
+    // Método para refrescar los datos de la tabla de comidas
     public void refrescar() {
         try {
-            // Obtiene todos los caracteristicas desde el servicio
-            ArrayList<EntidadAntecedentesFamilares> datos = ControladorAntecedentesFamiliares.PedirTodos();
+            // Obtiene todos los registros de comidas desde el servicio
+            ArrayList<EntidadComidas> datos = ControladorComidas.PedirTodos();
 
             // Establece los nuevos datos en el modelo de la tabla
             model.setDatos(datos);
@@ -77,18 +83,19 @@ public class VistaAntecedenteFamiliar extends javax.swing.JPanel {
             // Muestra un mensaje de error si ocurre un SQLException
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error de SQL", JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error de SQL", JOptionPane.ERROR_MESSAGE);
+            // Muestra un mensaje de error si ocurre un IOException
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error de Entrada/Salida", JOptionPane.ERROR_MESSAGE);
         }
         limpiarFormulario();
     }
 
     // Constructor de la clase
-    public VistaAntecedenteFamiliar() {
+    public VistaComidas() {
         // Inicializa los componentes de la interfaz gráfica
         initComponents();
 
         // Inicializa el modelo de la tabla de videojuegos
-        model = new ModeloTablaAntecedentesFamiliares();
+        model = new ModeloTablaComidas();
 
         // Establece el modelo en la tabla
         TBDatos.setModel(model);
@@ -130,15 +137,23 @@ public class VistaAntecedenteFamiliar extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        JTA_Parentezco = new javax.swing.JTextField();
+        JTA_Platillo = new javax.swing.JTextField();
         JTA_IDPaciente = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        JTA_Enfermedad = new javax.swing.JTextField();
+        JTA_Horario = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        JTA_IDAF = new javax.swing.JTextField();
+        JTA_IDComida = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        CB_Comida = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        JTA_IntoleraciaAlergia = new javax.swing.JTextArea();
+        JTA_Ingredientes = new javax.swing.JTextArea();
+        JTA_Cantidad = new javax.swing.JTextField();
+        CB_ComidaCalle = new javax.swing.JComboBox<>();
+        SP_FrecienciaSemanal = new javax.swing.JSpinner();
 
         setPreferredSize(new java.awt.Dimension(648, 441));
 
@@ -233,26 +248,40 @@ public class VistaAntecedenteFamiliar extends javax.swing.JPanel {
                 .addComponent(JTA_BuscaIDPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBuscaPaciente_)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Black", 0, 14))); // NOI18N
 
         jLabel1.setText("ID Paciente:");
 
-        jLabel2.setText("Parentezco:");
+        jLabel2.setText("Comdia:");
 
-        jLabel3.setText("Enfermedad:");
+        jLabel3.setText("Horario");
 
-        jLabel8.setText("alergia/intolerancia alimentos:");
+        jLabel4.setText("Ingredientes:");
+
+        jLabel5.setText("Platillo:");
+
+        jLabel6.setText("Cantidad:");
+
+        jLabel8.setText("Comida calle:");
 
         jLabel9.setText("ID:");
 
-        JTA_IDAF.setEditable(false);
+        JTA_IDComida.setEditable(false);
 
-        JTA_IntoleraciaAlergia.setColumns(20);
-        JTA_IntoleraciaAlergia.setRows(5);
-        jScrollPane2.setViewportView(JTA_IntoleraciaAlergia);
+        jLabel7.setText("Frecuencia Semanal:");
+
+        CB_Comida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Desayuno", "Almuerzo", "Comida", "Cena", "Otro" }));
+
+        JTA_Ingredientes.setColumns(20);
+        JTA_Ingredientes.setRows(5);
+        jScrollPane2.setViewportView(JTA_Ingredientes);
+
+        CB_ComidaCalle.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Si" }));
+
+        SP_FrecienciaSemanal.setModel(new javax.swing.SpinnerNumberModel(0, 0, 7, 1));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -262,56 +291,75 @@ public class VistaAntecedenteFamiliar extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
                     .addComponent(jLabel3)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JTA_Platillo)
+                    .addComponent(JTA_Horario)
+                    .addComponent(JTA_Cantidad)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(JTA_Parentezco))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(JTA_Enfermedad))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(JTA_IDPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JTA_IDAF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CB_Comida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(CB_ComidaCalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(SP_FrecienciaSemanal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(JTA_IDPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JTA_IDComida, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(96, 96, 96))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(JTA_IDPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel9)
-                        .addComponent(JTA_IDAF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(JTA_IDComida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(JTA_Parentezco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CB_Comida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JTA_Horario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(9, 9, 9)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(JTA_Platillo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(JTA_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JTA_Enfermedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel8)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2)
-                        .addContainerGap())))
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8)
+                    .addComponent(CB_ComidaCalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SP_FrecienciaSemanal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -319,19 +367,16 @@ public class VistaAntecedenteFamiliar extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -342,28 +387,36 @@ public class VistaAntecedenteFamiliar extends javax.swing.JPanel {
 
     private void btnAgregar_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar_ActionPerformed
         // Verifica si los campos obligatorios están llenos antes de proceder
-        if (!ValidadorAntecedentesFamiliares.campoNoVacio(JTA_IDPaciente.getText(), "ID Paciente")
-                || !ValidadorAntecedentesFamiliares.campoNoVacio(JTA_Parentezco.getText(), "Parentezco")
-                || !ValidadorAntecedentesFamiliares.campoNoVacio(JTA_Enfermedad.getText(), "Enfermedad")
-                || !ValidadorAntecedentesFamiliares.campoNoVacio(JTA_IntoleraciaAlergia.getText(), "Alergias o Intolerancias")) {
+        if (!ValidadorComidas.campoNoVacio(JTA_IDPaciente.getText(), "ID Paciente")
+                || !ValidadorComidas.campoNoVacio(JTA_Horario.getText(), "Horario")
+                || !ValidadorComidas.campoNoVacio(JTA_Platillo.getText(), "Platillo")
+                || !ValidadorComidas.campoNoVacio(JTA_Ingredientes.getText(), "Ingredientes")
+                || !ValidadorComidas.campoNoVacio(JTA_Cantidad.getText(), "Cantidad")) {
             return; // Sale del método si alguna validación falla
         }
 
         // Verifica si el ID del paciente es un número válido
-        if (!ValidadorAntecedentesFamiliares.esNumeroEntero(JTA_IDPaciente.getText(), "ID Paciente")) {
+        if (!ValidadorComidas.esNumeroEntero(JTA_IDPaciente.getText(), "ID Paciente")) {
             return;
         }
 
         // Verifica si el ID del paciente existe en la base de datos
         int idPaciente = Integer.parseInt(JTA_IDPaciente.getText());
-        if (!ValidadorAntecedentesFamiliares.idPacienteExisteEnBaseDatos(idPaciente, "Pacientes", "ID Paciente")) {
+        if (!ValidadorComidas.idPacienteExisteEnBaseDatos(idPaciente, "Pacientes", "ID Paciente")) {
+            return;
+        }
+
+        // Verifica si la frecuencia semanal es un número válido (opcional, si es relevante)
+        int frecuenciaSemanal = (int) SP_FrecienciaSemanal.getValue();
+        if (frecuenciaSemanal < 0) {
+            JOptionPane.showMessageDialog(this, "La frecuencia semanal no puede ser negativa", "Error de Validación", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         // Pregunta de confirmación al usuario
         int confirmacion = JOptionPane.showConfirmDialog(
                 this,
-                "¿Está seguro que desea registrar este antecedente familiar?",
+                "¿Está seguro que desea registrar esta comida?",
                 "Confirmación de registro",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE
@@ -375,29 +428,33 @@ public class VistaAntecedenteFamiliar extends javax.swing.JPanel {
         }
 
         // Si todas las validaciones son correctas, crea el objeto y procede con la operación
-        EntidadAntecedentesFamilares nuevo = new EntidadAntecedentesFamilares(
-                null, // El ID del antecedente será generado automáticamente
+        EntidadComidas nuevaComida = new EntidadComidas(
+                null, // El ID de la comida será generado automáticamente
                 idPaciente,
-                JTA_Parentezco.getText(),
-                JTA_Enfermedad.getText(),
-                JTA_IntoleraciaAlergia.getText()
+                CB_Comida.getSelectedItem().toString(),
+                JTA_Horario.getText(),
+                JTA_Platillo.getText(),
+                JTA_Ingredientes.getText(),
+                JTA_Cantidad.getText(),
+                CB_ComidaCalle.getSelectedItem().toString(), // Cambiado a String
+                (Integer) SP_FrecienciaSemanal.getValue() // Frecuencia de comida callejera
         );
-
         try {
-            ControladorAntecedentesFamiliares.Alta(nuevo);
+            ControladorComidas.Alta(nuevaComida);
 
             // Muestra un mensaje de éxito si el registro fue exitoso
-            JOptionPane.showMessageDialog(this, "Antecedente familiar registrado exitosamente", "Operación exitosa", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Comida registrada exitosamente", "Operación exitosa", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error al registrar el antecedente familiar: " + e.getMessage(), "Error de Entrada/Salida", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error al registrar la comida: " + e.getMessage(), "Error de Entrada/Salida", JOptionPane.ERROR_MESSAGE);
         } catch (IllegalAccessError ex) {
-            Logger.getLogger(VistaAntecedenteFamiliar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VistaComidas.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(VistaAntecedenteFamiliar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VistaComidas.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         // Actualiza la tabla o vista después de la operación
         refrescar();
+
     }//GEN-LAST:event_btnAgregar_ActionPerformed
 
     private void btnRefrescar_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefrescar_ActionPerformed
@@ -405,24 +462,24 @@ public class VistaAntecedenteFamiliar extends javax.swing.JPanel {
     }//GEN-LAST:event_btnRefrescar_ActionPerformed
 
     private void btnEliminar_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminar_ActionPerformed
-        // Obtiene el antecedente familiar seleccionado
-        EntidadAntecedentesFamilares seleccionado = getObjSeleccionado();
+        // Obtiene la comida seleccionada
+        EntidadComidas seleccionado = getObjSeleccionado();
 
-        // Verifica si hay un antecedente familiar seleccionado
+        // Verifica si hay una comida seleccionada
         if (seleccionado == null) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un antecedente familiar para eliminar.", "No seleccionado", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una comida para eliminar.", "No seleccionado", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         // Validar que el ID del paciente existe en la base de datos
-        if (!ValidadorAntecedentesFamiliares.idPacienteExisteEnBaseDatos(seleccionado.getIdPaciente(), "Antecedentes Familiares", "ID del paciente")) {
+        if (!ValidadorComidas.idPacienteExisteEnBaseDatos(seleccionado.getIdPaciente(), "Comidas", "ID del paciente")) {
             return; // Salir si el ID no existe
         }
 
         // Pregunta de confirmación al usuario
         int confirmacion = JOptionPane.showConfirmDialog(
                 this,
-                "¿Está seguro que desea eliminar el antecedente familiar del paciente " + seleccionado.getIdPaciente() + "?",
+                "¿Está seguro que desea eliminar la comida " + seleccionado.getPlatillo() + "?",
                 "Confirmación de eliminación",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE
@@ -435,11 +492,11 @@ public class VistaAntecedenteFamiliar extends javax.swing.JPanel {
 
         // Si el usuario selecciona "Sí", se procede a la eliminación
         try {
-            // Llama al servicio para eliminar el antecedente familiar seleccionado de la base de datos
-            ControladorAntecedentesFamiliares.Eliminar(seleccionado);
+            // Llama al servicio para eliminar la comida seleccionada de la base de datos
+            ControladorComidas.Eliminar(seleccionado);
 
             // Muestra un mensaje de éxito si la eliminación fue exitosa
-            JOptionPane.showMessageDialog(this, "El antecedente familiar ha sido eliminado exitosamente.", "Operación exitosa", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "La comida ha sido eliminada exitosamente.", "Operación exitosa", JOptionPane.INFORMATION_MESSAGE);
         } catch (IllegalAccessError ex) {
             // Muestra un mensaje de error si ocurre un IllegalAccessError
             JOptionPane.showMessageDialog(this, ex.getMessage(), "IllegalArgumentException", JOptionPane.ERROR_MESSAGE);
@@ -448,25 +505,27 @@ public class VistaAntecedenteFamiliar extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error de SQL", JOptionPane.ERROR_MESSAGE);
         }
 
-        // Refresca los datos de la tabla para reflejar la eliminación del antecedente familiar
+        // Refresca los datos de la tabla para reflejar la eliminación de la comida
         refrescar();
+
     }//GEN-LAST:event_btnEliminar_ActionPerformed
 
     private void btnEditar_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditar_ActionPerformed
-        // Obtiene el antecedente médico seleccionado
-        EntidadAntecedentesFamilares seleccionado = getObjSeleccionado();
+        // Obtiene la comida seleccionada
+        EntidadComidas seleccionado = getObjSeleccionado();
 
-        // Verifica si hay un antecedente médico seleccionado
+        // Verifica si hay una comida seleccionada
         if (seleccionado == null) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un antecedente médico para editar.", "No seleccionado", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una comida para editar.", "No seleccionado", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        // Validación de campos vacíos usando ValidadorDatos
-        if (!ValidadorAntecedentesFamiliares.campoNoVacio(JTA_IDPaciente.getText(), "ID Paciente")
-                || !ValidadorAntecedentesFamiliares.campoNoVacio(JTA_Parentezco.getText(), "Parentezco")
-                || !ValidadorAntecedentesFamiliares.campoNoVacio(JTA_Enfermedad.getText(), "Enfermedad")
-                || !ValidadorAntecedentesFamiliares.campoNoVacio(JTA_IntoleraciaAlergia.getText(), "Intolerancia o Alergia")) {
+        // Validación de campos vacíos usando ValidadorComidas
+        if (!ValidadorComidas.campoNoVacio(JTA_IDPaciente.getText(), "ID Paciente")
+                || !ValidadorComidas.campoNoVacio(JTA_Platillo.getText(), "Platillo")
+                || !ValidadorComidas.campoNoVacio(JTA_Horario.getText(), "Horario")
+                || !ValidadorComidas.campoNoVacio(JTA_Ingredientes.getText(), "Ingredientes")
+                || !ValidadorComidas.campoNoVacio(JTA_Cantidad.getText(), "Cantidad")) {
             return; // Sale del método si alguna validación falla
         }
 
@@ -483,16 +542,16 @@ public class VistaAntecedenteFamiliar extends javax.swing.JPanel {
             return;
         }
 
-        // Verifica si el paciente existe en la base de datos usando ValidadorDatos
-        if (!ValidadorAntecedentesFamiliares.idPacienteExisteEnBaseDatos(idPaciente, "Paciente", "ID del paciente")) {
+        // Verifica si el paciente existe en la base de datos usando ValidadorComidas
+        if (!ValidadorComidas.idPacienteExisteEnBaseDatos(idPaciente, "Paciente", "ID del paciente")) {
             return; // Sale si el ID no existe
         }
-        
+
         // Pregunta de confirmación al usuario
         int confirmacion = JOptionPane.showConfirmDialog(
                 this,
-                "¿Está seguro que desea editar la información de la enfermedad familiar " + seleccionado.getEnfermedadDiagnosticada()+ 
-                "del paciente "+ seleccionado.getIdPaciente()+"?",
+                "¿Está seguro que desea editar la información de la comida " + seleccionado.getComida()+ 
+                " del paciente "+ seleccionado.getIdPaciente()+"?",
                 "Confirmación de edición",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE
@@ -502,17 +561,23 @@ public class VistaAntecedenteFamiliar extends javax.swing.JPanel {
         if (confirmacion != JOptionPane.YES_OPTION) {
             return; // No se realiza la edición
         }
-        
-        // Actualiza los datos del antecedente médico seleccionado con los valores de los campos de texto
+
+        // Actualiza los datos de la comida seleccionada con los valores de los campos de texto
         seleccionado.setIdPaciente(idPaciente);
-        seleccionado.setParentezco(JTA_Parentezco.getText());
-        seleccionado.setEnfermedadDiagnosticada(JTA_Enfermedad.getText());
-        seleccionado.setAlergiasMedicamentos(JTA_IntoleraciaAlergia.getText());
+        seleccionado.setComida(CB_Comida.getSelectedItem().toString());
+        seleccionado.setPlatillo(JTA_Platillo.getText());
+        seleccionado.setHorario(JTA_Horario.getText());
+        seleccionado.setIngredientes(JTA_Ingredientes.getText());
+        seleccionado.setCantidad(JTA_Cantidad.getText()); // Asegúrate de que el campo sea numérico
+
+        // Verifica si el usuario consume comida callejera y su frecuencia
+        seleccionado.setComeCalle(CB_ComidaCalle.getSelectedItem().toString());
+        seleccionado.setFrecuenciaComidaCalle((Integer) SP_FrecienciaSemanal.getValue());
 
         try {
-            // Llama al servicio para actualizar el antecedente médico en la base de datos
-            ControladorAntecedentesFamiliares.Actualizar(seleccionado);
-            JOptionPane.showMessageDialog(this, "Los datos del antecedente médico han sido actualizados con éxito.", "Actualización exitosa", JOptionPane.INFORMATION_MESSAGE);
+            // Llama al servicio para actualizar la comida en la base de datos
+            ControladorComidas.Actualizar(seleccionado);
+            JOptionPane.showMessageDialog(this, "Los datos de la comida han sido actualizados con éxito.", "Actualización exitosa", JOptionPane.INFORMATION_MESSAGE);
         } catch (IllegalAccessError ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "IllegalAccessError", JOptionPane.ERROR_MESSAGE);
         } catch (SQLException ex) {
@@ -528,36 +593,36 @@ public class VistaAntecedenteFamiliar extends javax.swing.JPanel {
     private void btnBuscaID_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaID_ActionPerformed
         try {
             // Valida si el campo de ID no está vacío
-            if (!ValidadorAntecedentesFamiliares.campoNoVacio(JTA_BuscaID.getText(), "ID Antecedente Médico")) {
+            if (!ValidadorComidas.campoNoVacio(JTA_BuscaID.getText(), "ID Comida")) {
                 return;
             }
 
             // Convierte el texto del campo ID a un número entero
-            int idAntecedente;
+            int idComida;
             try {
-                idAntecedente = Integer.parseInt(JTA_BuscaID.getText());
+                idComida = Integer.parseInt(JTA_BuscaID.getText());
             } catch (NumberFormatException ex) {
                 // Muestra un mensaje de error si el ID no es un número válido
-                JOptionPane.showMessageDialog(this, "El ID del antecedente médico debe ser un número entero", "Error de formato", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "El ID de la comida debe ser un número entero", "Error de formato", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            // Verifica si el antecedente médico existe en la base de datos usando la clase ValidadorDatos
-            if (!ValidadorAntecedentesFamiliares.idAntecedenteFamiliarExisteEnBaseDatos(idAntecedente, "Antecedentes Médicos", "ID del antecedente médico")) {
+            // Verifica si la comida existe en la base de datos usando la clase ValidadorComidas
+            if (!ValidadorComidas.idExisteEnBaseDatos(idComida, "Comidas", "ID de la comida")) {
                 return;
             }
 
-            // Llama al método para obtener el antecedente médico por ID
-            EntidadAntecedentesFamilares antecedente = ControladorAntecedentesFamiliares.PedirAntecedentePorId(idAntecedente);
+            // Llama al método para obtener la comida por ID
+            EntidadComidas comida = ControladorComidas.PedirComidaPorId(idComida);
 
-            // Verifica si se obtuvo el antecedente correctamente y actualiza la tabla
-            if (antecedente != null) {
-                ArrayList<EntidadAntecedentesFamilares> datos = new ArrayList<>();
-                datos.add(antecedente);
-                model.setDatos(datos);
+            // Verifica si se obtuvo la comida correctamente y actualiza la tabla
+            if (comida != null) {
+                ArrayList<EntidadComidas> datos = new ArrayList<>();
+                datos.add(comida);
+                model.setDatos(datos); // Actualiza la tabla con la comida obtenida
             } else {
-                // Si no se encuentra el antecedente, muestra un mensaje de advertencia
-                JOptionPane.showMessageDialog(this, "No se encontraron antecedentes médicos con ese ID", "Paciente no encontrado", JOptionPane.INFORMATION_MESSAGE);
+                // Si no se encuentra la comida, muestra un mensaje de advertencia
+                JOptionPane.showMessageDialog(this, "No se encontraron comidas con ese ID", "Comida no encontrada", JOptionPane.INFORMATION_MESSAGE);
             }
 
         } catch (SQLException ex) {
@@ -576,8 +641,8 @@ public class VistaAntecedenteFamiliar extends javax.swing.JPanel {
 
     private void btnBuscaPaciente_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaPaciente_ActionPerformed
         try {
-            // Valida si el campo de ID no está vacío
-            if (!ValidadorAntecedentesFamiliares.campoNoVacio(JTA_BuscaIDPaciente.getText(), "ID Paciente")) {
+            // Valida si el campo de ID del paciente no está vacío
+            if (!ValidadorComidas.campoNoVacio(JTA_BuscaIDPaciente.getText(), "ID Paciente")) {
                 return;
             }
 
@@ -592,19 +657,19 @@ public class VistaAntecedenteFamiliar extends javax.swing.JPanel {
             }
 
             // Valida si el ID del paciente existe en la base de datos
-            if (!ValidadorAntecedentesFamiliares.idPacienteExisteEnBaseDatos(idPaciente, "Antecedentes Médicos", "ID del paciente")) {
+            if (!ValidadorComidas.idPacienteExisteEnBaseDatos(idPaciente, "Comidas", "ID del paciente")) {
                 return;
             }
 
-            // Llama al método para obtener los antecedentes por ID del paciente
-            ArrayList<EntidadAntecedentesFamilares> antecedentes = ControladorAntecedentesFamiliares.PedirAntecedentesPorIdPaciente(idPaciente);
+            // Llama al método para obtener las comidas por ID del paciente
+            ArrayList<EntidadComidas> comidas = ControladorComidas.PedirComidasPorIdPaciente(idPaciente);
 
-            // Si se encuentran antecedentes, actualiza los datos en la tabla
-            if (!antecedentes.isEmpty()) {
-                model.setDatos(antecedentes);
+            // Si se encuentran comidas, actualiza los datos en la tabla
+            if (!comidas.isEmpty()) {
+                model.setDatos(comidas);
             } else {
-                // Si no se encuentran antecedentes, muestra un mensaje
-                JOptionPane.showMessageDialog(this, "No se encontraron antecedentes para el paciente con ese ID", "Paciente no encontrado", JOptionPane.INFORMATION_MESSAGE);
+                // Si no se encuentran comidas, muestra un mensaje
+                JOptionPane.showMessageDialog(this, "No se encontraron comidas para el paciente con ese ID", "Paciente no encontrado", JOptionPane.INFORMATION_MESSAGE);
             }
 
         } catch (SQLException ex) {
@@ -614,9 +679,9 @@ public class VistaAntecedenteFamiliar extends javax.swing.JPanel {
             // Muestra un mensaje de error si la conexión es nula o hay otro problema
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error de conexión", JOptionPane.ERROR_MESSAGE);
         } catch (IllegalAccessError ex) {
-            Logger.getLogger(VistaAntecedenteFamiliar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VistaComidas.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(VistaAntecedenteFamiliar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VistaComidas.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         limpiarFormulario(); // Limpia los campos del formulario después de la búsqueda
@@ -624,13 +689,17 @@ public class VistaAntecedenteFamiliar extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CB_Comida;
+    private javax.swing.JComboBox<String> CB_ComidaCalle;
     private javax.swing.JTextField JTA_BuscaID;
     private javax.swing.JTextField JTA_BuscaIDPaciente;
-    private javax.swing.JTextField JTA_Enfermedad;
-    private javax.swing.JTextField JTA_IDAF;
+    private javax.swing.JTextField JTA_Cantidad;
+    private javax.swing.JTextField JTA_Horario;
+    private javax.swing.JTextField JTA_IDComida;
     private javax.swing.JTextField JTA_IDPaciente;
-    private javax.swing.JTextArea JTA_IntoleraciaAlergia;
-    private javax.swing.JTextField JTA_Parentezco;
+    private javax.swing.JTextArea JTA_Ingredientes;
+    private javax.swing.JTextField JTA_Platillo;
+    private javax.swing.JSpinner SP_FrecienciaSemanal;
     private javax.swing.JTable TBDatos;
     private javax.swing.JButton btnAgregar_;
     private javax.swing.JButton btnBuscaID_;
@@ -641,6 +710,10 @@ public class VistaAntecedenteFamiliar extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;

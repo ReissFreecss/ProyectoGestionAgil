@@ -43,21 +43,8 @@ public class VistaConsumoSustancias extends javax.swing.JPanel {
             JTA_Sustancia.setText(this.ObjSeleccionado.getSustancia()); // Sustancia
             JTA_Tipo.setText(this.ObjSeleccionado.getTipo()); // Tipo
 
-            // Configurar la frecuencia para el JSlider
-            try {
-                JS_Frecuencia.setValue(this.ObjSeleccionado.getFrecuencia()); // Asignar frecuencia al slider
-            } catch (IllegalArgumentException e) {
-                JOptionPane.showMessageDialog(this, "Frecuencia no permitida", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-
-            // Convertir y asignar el valor de cantidad al JSpinner
-            try {
-                int cantidad = Integer.parseInt(this.ObjSeleccionado.getCantidad().toString());
-                JS_Cantidad.setValue(cantidad); // Asignar cantidad al spinner
-            } catch (NumberFormatException e) {
-                JS_Cantidad.setValue(0); // Valor por defecto si la conversión falla
-                JOptionPane.showMessageDialog(this, "Valor de cantidad no válido, se ha establecido a 0", "Error", JOptionPane.WARNING_MESSAGE);
-            }
+            JS_Frecuencia.setValue(this.ObjSeleccionado.getFrecuencia());
+            JTA_Cantidad.setText(this.ObjSeleccionado.getCantidad());
 
         } else {
             limpiarFormulario(); // Limpiar los campos si no hay objeto seleccionado
@@ -71,7 +58,7 @@ public class VistaConsumoSustancias extends javax.swing.JPanel {
         JTA_Sustancia.setText(""); // Limpiar el campo sustancia
         JTA_Tipo.setText(""); // Limpiar el campo tipo (frecuencia)
         JS_Frecuencia.setValue(0); // Reiniciar el campo frecuencia semanal de ejercicio
-        JS_Cantidad.setValue(0); // Reiniciar el campo frecuencia semanal de ejercicio
+        JS_Frecuencia.setValue(0); // Reiniciar el campo frecuencia semanal de ejercicio
 
     }
 
@@ -151,8 +138,8 @@ public class VistaConsumoSustancias extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         JTA_IDConsumoSustancia = new javax.swing.JTextField();
-        JS_Frecuencia = new javax.swing.JSlider();
-        JS_Cantidad = new javax.swing.JSpinner();
+        JS_Frecuencia = new javax.swing.JSpinner();
+        JTA_Cantidad = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(648, 441));
 
@@ -247,7 +234,7 @@ public class VistaConsumoSustancias extends javax.swing.JPanel {
                 .addComponent(JTA_BuscaIDPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBuscaPaciente_)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Black", 0, 14))); // NOI18N
@@ -266,9 +253,7 @@ public class VistaConsumoSustancias extends javax.swing.JPanel {
 
         JTA_IDConsumoSustancia.setEditable(false);
 
-        JS_Frecuencia.setMaximum(7);
-        JS_Frecuencia.setPaintTicks(true);
-        JS_Frecuencia.setSnapToTicks(true);
+        JS_Frecuencia.setModel(new javax.swing.SpinnerNumberModel(0, 0, 30, 1));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -286,14 +271,17 @@ public class VistaConsumoSustancias extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(JTA_Tipo)
                     .addComponent(JTA_Sustancia)
-                    .addComponent(JS_Frecuencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JS_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTA_Cantidad)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(JTA_IDPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JTA_IDConsumoSustancia, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JS_Frecuencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(JTA_IDPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JTA_IDConsumoSustancia, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(106, 106, 106))
         );
         jPanel2Layout.setVerticalGroup(
@@ -314,15 +302,15 @@ public class VistaConsumoSustancias extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JTA_Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addGap(11, 11, 11)
+                .addGap(9, 9, 9)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(JS_Frecuencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(JS_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(JTA_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -342,7 +330,7 @@ public class VistaConsumoSustancias extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -356,7 +344,7 @@ public class VistaConsumoSustancias extends javax.swing.JPanel {
         if (!ValidadorConsumoSustancia.campoNoVacio(JTA_IDPaciente.getText(), "ID Paciente")
                 || !ValidadorConsumoSustancia.campoNoVacio(JTA_Sustancia.getText(), "Sustancia")
                 || !ValidadorConsumoSustancia.campoNoVacio(JTA_Tipo.getText(), "Tipo")
-                || !ValidadorConsumoSustancia.campoNoVacio(String.valueOf(JS_Cantidad.getValue()), "Cantidad")) {
+                || !ValidadorConsumoSustancia.campoNoVacio(String.valueOf(JS_Frecuencia.getValue()), "Cantidad")) {
             return; // Sale del método si alguna validación falla
         }
 
@@ -391,8 +379,8 @@ public class VistaConsumoSustancias extends javax.swing.JPanel {
                 idPaciente,
                 JTA_Sustancia.getText(),
                 JTA_Tipo.getText(),
-                (Integer) JS_Frecuencia.getValue(), // Frecuencia es un Integer
-                String.valueOf(JS_Cantidad.getValue()) // Convertimos el valor a String
+                (Integer)JS_Frecuencia.getValue(), // Frecuencia es un Integer
+                JTA_Cantidad.getText() // Convertimos el valor a String
         );
 
         try {
@@ -478,7 +466,7 @@ public class VistaConsumoSustancias extends javax.swing.JPanel {
         if (!ValidadorConsumoSustancia.campoNoVacio(JTA_IDPaciente.getText(), "ID Paciente")
                 || !ValidadorConsumoSustancia.campoNoVacio(JTA_Sustancia.getText(), "Sustancia")
                 || !ValidadorConsumoSustancia.campoNoVacio(JTA_Tipo.getText(), "Tipo")
-                || !ValidadorConsumoSustancia.campoNoVacio(String.valueOf(JS_Cantidad.getValue()), "Cantidad")) {
+                || !ValidadorConsumoSustancia.campoNoVacio(String.valueOf(JS_Frecuencia.getValue()), "Cantidad")) {
             return; // Sale del método si alguna validación falla
         }
 
@@ -499,13 +487,28 @@ public class VistaConsumoSustancias extends javax.swing.JPanel {
         if (!ValidadorConsumoSustancia.idPacienteExisteEnBaseDatos(idPaciente, "Paciente", "ID del paciente")) {
             return; // Sale si el ID no existe
         }
+        
+        // Pregunta de confirmación al usuario
+        int confirmacion = JOptionPane.showConfirmDialog(
+                this,
+                "¿Está seguro que desea editar la información de la sustancia " + seleccionado.getSustancia()+ 
+                "del paciente "+ seleccionado.getIdPaciente()+"?",
+                "Confirmación de edición",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+        );
+
+        // Si el usuario selecciona "No", se cancela la edición
+        if (confirmacion != JOptionPane.YES_OPTION) {
+            return; // No se realiza la edición
+        }
 
         // Actualiza los datos del consumo de sustancia seleccionado con los valores de los campos de texto
         seleccionado.setIdPaciente(idPaciente);
         seleccionado.setSustancia(JTA_Sustancia.getText());
         seleccionado.setTipo(JTA_Tipo.getText());
         seleccionado.setFrecuencia((Integer) JS_Frecuencia.getValue()); // Asigna la fecha de consumo
-        seleccionado.setCantidad(String.valueOf(JS_Cantidad.getValue())); // Asigna la cantidad consumida
+        seleccionado.setCantidad(JTA_Cantidad.getText()); // Asigna la cantidad consumida
 
         try {
             // Llama al servicio para actualizar el consumo de sustancia en la base de datos
@@ -624,10 +627,10 @@ public class VistaConsumoSustancias extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JSpinner JS_Cantidad;
-    private javax.swing.JSlider JS_Frecuencia;
+    private javax.swing.JSpinner JS_Frecuencia;
     private javax.swing.JTextField JTA_BuscaID;
     private javax.swing.JTextField JTA_BuscaIDPaciente;
+    private javax.swing.JTextField JTA_Cantidad;
     private javax.swing.JTextField JTA_IDConsumoSustancia;
     private javax.swing.JTextField JTA_IDPaciente;
     private javax.swing.JTextField JTA_Sustancia;

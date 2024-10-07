@@ -501,7 +501,7 @@ public class VistaPacientes extends javax.swing.JPanel {
         if (confirmacion != JOptionPane.YES_OPTION) {
             return; // No se realiza la edición
         }
-
+        
         // Actualiza los datos del paciente seleccionado con los valores de los campos de texto
         seleccionado.setNombreCompleto(JTA_Nombre.getText());
         seleccionado.setEdad(Integer.parseInt(JTA_Edad.getText())); // Convierte la edad a entero

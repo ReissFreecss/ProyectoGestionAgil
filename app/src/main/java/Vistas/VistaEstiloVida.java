@@ -538,6 +538,20 @@ public class VistaEstiloVida extends javax.swing.JPanel {
             return; // Sale si el ID no existe
         }
 
+        // Pregunta de confirmación al usuario
+        int confirmacion = JOptionPane.showConfirmDialog(
+                this,
+                "¿Está seguro que desea editar la información de estilo de vida del paciente "+ seleccionado.getIdPaciente()+"?",
+                "Confirmación de edición",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+        );
+
+        // Si el usuario selecciona "No", se cancela la edición
+        if (confirmacion != JOptionPane.YES_OPTION) {
+            return; // No se realiza la edición
+        }
+        
         // Actualiza los datos del estilo de vida seleccionado con los valores de los campos de texto
         seleccionado.setIdPaciente(idPaciente);
         seleccionado.setHoraDespertar(JTA_HoraDespertar.getText());

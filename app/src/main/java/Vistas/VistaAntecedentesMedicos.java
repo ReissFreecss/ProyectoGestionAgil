@@ -538,6 +538,21 @@ public class VistaAntecedentesMedicos extends javax.swing.JPanel {
         if (!ValidadorAntecedentesMedicos.idPacienteExisteEnBaseDatos(idPaciente, "Paciente", "ID del paciente")) {
             return; // Sale si el ID no existe
         }
+        
+        // Pregunta de confirmación al usuario
+        int confirmacion = JOptionPane.showConfirmDialog(
+                this,
+                "¿Está seguro que desea editar la información de la enfermedad " + seleccionado.getEnfermedadDiagnosticada()+ 
+                "del paciente "+ seleccionado.getIdPaciente()+"?",
+                "Confirmación de edición",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+        );
+
+        // Si el usuario selecciona "No", se cancela la edición
+        if (confirmacion != JOptionPane.YES_OPTION) {
+            return; // No se realiza la edición
+        }
 
         // Actualiza los datos del antecedente médico seleccionado con los valores de los campos de texto
         seleccionado.setIdPaciente(idPaciente);

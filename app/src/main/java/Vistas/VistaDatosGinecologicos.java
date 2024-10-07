@@ -548,15 +548,15 @@ public class VistaDatosGinecologicos extends javax.swing.JPanel {
         // Pregunta de confirmación al usuario
         int confirmacion = JOptionPane.showConfirmDialog(
                 this,
-                "¿Está seguro que desea actualizar estos datos ginecológicos?",
-                "Confirmación de actualización",
+                "¿Está seguro que desea editar la información ginecologica del paciente "+ seleccionado.getIdPaciente()+"?",
+                "Confirmación de edición",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE
         );
 
-        // Si el usuario selecciona "No", se cancela la actualización
+        // Si el usuario selecciona "No", se cancela la edición
         if (confirmacion != JOptionPane.YES_OPTION) {
-            return; // No se realiza la actualización
+            return; // No se realiza la edición
         }
 
         // Si todas las validaciones son correctas, actualiza el objeto existente
