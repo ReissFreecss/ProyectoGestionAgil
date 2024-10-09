@@ -74,6 +74,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         vistaConsumoSustancias1 = new Vistas.VistaConsumoSustancias();
         jPanel9 = new javax.swing.JPanel();
         vistaComidas1 = new Vistas.VistaComidas();
+        jPanel10 = new javax.swing.JPanel();
+        vistaIndicadoresDieteticos1 = new Vistas.VistaIndicadoresDieteticos();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -173,10 +175,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Consumo de Sustancias", jPanel8);
 
-        jPanel9.setLayout(new java.awt.GridLayout());
+        jPanel9.setLayout(new java.awt.GridLayout(1, 0));
         jPanel9.add(vistaComidas1);
 
         jTabbedPane2.addTab("Comidas", jPanel9);
+
+        jPanel10.setLayout(new java.awt.GridLayout());
+        jPanel10.add(vistaIndicadoresDieteticos1);
+
+        jTabbedPane2.addTab("Indicadores Dieteticos", jPanel10);
 
         jLabel4.setText("Nutrición y Fitness MX");
 
@@ -402,6 +409,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -417,5 +425,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private Vistas.VistaConsumoSustancias vistaConsumoSustancias1;
     private Vistas.VistaDatosGinecologicos vistaDatosGinecologicos1;
     private Vistas.VistaEstiloVida vistaEstiloVida1;
+    private Vistas.VistaIndicadoresDieteticos vistaIndicadoresDieteticos1;
     // End of variables declaration//GEN-END:variables
 }

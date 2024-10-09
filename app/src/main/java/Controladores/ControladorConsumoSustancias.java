@@ -129,7 +129,7 @@ public class ControladorConsumoSustancias {
     }
 
     // Método para obtener un registro de consumo de sustancias por ID
-    public static EntidadConsumoSustancias PedirConsumoPorId(int idConsumo) throws IllegalAccessError, SQLException, IOException {
+     public static EntidadConsumoSustancias PedirConsumoPorId(int idConsumo) throws IllegalAccessError, SQLException, IOException {
         EntidadConsumoSustancias consumo = null;
 
         // Verifica si la conexión a la base de datos es nula

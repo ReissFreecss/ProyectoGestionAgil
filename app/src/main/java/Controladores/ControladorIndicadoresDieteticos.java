@@ -26,18 +26,18 @@ public class ControladorIndicadoresDieteticos {
 
             while (rs.next()) {
                 EntidadIndicadoresDieteticos obj = new EntidadIndicadoresDieteticos(
-                    rs.getInt("id_indicadores_dieteticos"),
-                    rs.getInt("id_paciente"),
-                    rs.getString("preparador_alimentos"),
-                    rs.getString("hora_apetito"),
-                    rs.getString("alimentos_preferidos"),
-                    rs.getString("alimentos_no_preferidos"),
-                    rs.getString("suplemento"),
-                    rs.getString("dosis_suplemento"),
-                    rs.getDouble("agua_consumida"),
-                    rs.getDouble("refresco_consumido"),
-                    rs.getDouble("leche_consumida"),
-                    rs.getString("medicamentos_bajar_peso")
+                        rs.getInt("id_indicadores_dieteticos"),
+                        rs.getInt("id_paciente"),
+                        rs.getString("preparador_alimentos"),
+                        rs.getString("hora_apetito"),
+                        rs.getString("alimentos_preferidos"),
+                        rs.getString("alimentos_no_preferidos"),
+                        rs.getString("suplemento"),
+                        rs.getString("dosis_suplemento"),
+                        rs.getDouble("agua_consumida"),
+                        rs.getDouble("refresco_consumido"),
+                        rs.getDouble("leche_consumida"),
+                        rs.getString("medicamentos_bajar_peso")
                 );
                 resultado.add(obj);
             }
@@ -127,22 +127,72 @@ public class ControladorIndicadoresDieteticos {
 
             while (rs.next()) {
                 EntidadIndicadoresDieteticos indicador = new EntidadIndicadoresDieteticos(
-                    rs.getInt("id_indicadores_dieteticos"),
-                    rs.getInt("id_paciente"),
-                    rs.getString("preparador_alimentos"),
-                    rs.getString("hora_apetito"),
-                    rs.getString("alimentos_preferidos"),
-                    rs.getString("alimentos_no_preferidos"),
-                    rs.getString("suplemento"),
-                    rs.getString("dosis_suplemento"),
-                    rs.getDouble("agua_consumida"),
-                    rs.getDouble("refresco_consumido"),
-                    rs.getDouble("leche_consumida"),
-                    rs.getString("medicamentos_bajar_peso")
+                        rs.getInt("id_indicadores_dieteticos"),
+                        rs.getInt("id_paciente"),
+                        rs.getString("preparador_alimentos"),
+                        rs.getString("hora_apetito"),
+                        rs.getString("alimentos_preferidos"),
+                        rs.getString("alimentos_no_preferidos"),
+                        rs.getString("suplemento"),
+                        rs.getString("dosis_suplemento"),
+                        rs.getDouble("agua_consumida"),
+                        rs.getDouble("refresco_consumido"),
+                        rs.getDouble("leche_consumida"),
+                        rs.getString("medicamentos_bajar_peso")
                 );
                 indicadores.add(indicador);
             }
         }
         return indicadores;
+    }
+    // Método para obtener un registro de indicadores dietéticos por ID
+
+    public static EntidadIndicadoresDieteticos PedirIndicadorPorId(int idIndicador) throws IllegalAccessError, SQLException, IOException {
+        EntidadIndicadoresDieteticos indicador = null;
+
+        // Verifica si la conexión a la base de datos es nula
+        if (ControladorBDSQL.conexion == null) {
+            throw new IllegalArgumentException("Error: Conexion es null");
+        }
+
+        // Consulta SQL para obtener el registro de indicadores dietéticos por ID
+        String sqlSquery = "SELECT * FROM Indicadores_Dieteticos WHERE id_indicadores_dieteticos = ?";
+
+        try (PreparedStatement ps = ControladorBDSQL.conexion.prepareStatement(sqlSquery)) {
+            ps.setInt(1, idIndicador);
+
+            ResultSet rs = ps.executeQuery();
+
+            // Si se encuentra el registro, lo asigna al objeto indicador
+            if (rs.next()) {
+                indicador = new EntidadIndicadoresDieteticos(
+                        rs.getInt("id_indicadores_dieteticos"),
+                        rs.getInt("id_paciente"),
+                        rs.getString("preparador_alimentos"),
+                        rs.getString("hora_apetito"),
+                        rs.getString("alimentos_preferidos"),
+                        rs.getString("alimentos_no_preferidos"),
+                        rs.getString("suplemento"),
+                        rs.getString("dosis_suplemento"),
+                        rs.getDouble("agua_consumida"),
+                        rs.getDouble("refresco_consumido"),
+                        rs.getDouble("leche_consumida"),
+                        rs.getString("medicamentos_bajar_peso")
+                );
+            }
+        }
+        return indicador; // Retorna el registro de indicador dietético o null si no se encuentra
+    }
+    // Método para verificar si existe un registro de consumo de sustancias por su ID
+    public static boolean existeConsumoPorId(int idConsumo) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM Indicadores_Dieteticos WHERE id_indicadores_dieteticos = ?";
+        try (PreparedStatement ps = ControladorBDSQL.conexion.prepareStatement(sql)) {
+            ps.setInt(1, idConsumo);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0; // Devuelve true si existe al menos un registro con ese ID
+            }
+        }
+        return false;
     }
 }
