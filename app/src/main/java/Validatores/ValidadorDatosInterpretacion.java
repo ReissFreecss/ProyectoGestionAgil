@@ -5,6 +5,7 @@
 package Validatores;
 
 import Controladores.ControladorPaciente;
+import Controladores.ControladorDatosInterpretacion;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -91,6 +92,21 @@ public class ValidadorDatosInterpretacion {
                esDecimalValido(pliegueSubescapular, "Pliegue Subescapular") &&
                fechaNoNula(fecha, "Fecha") &&
                idPacienteExisteEnBaseDatos(idPaciente, "ID Paciente");
+    }
+    // Valida si un ID existe en la base de datos
+    public static boolean idExisteEnBaseDatos(int id, String nombreEntidad, String nombreCampo) {
+        try {
+            // Aquí iría la lógica para verificar si el ID existe en la base de datos
+            boolean existe = ControladorDatosInterpretacion.existeAntecedentePorId(id); // Ejemplo para antecedentes médicos
+            if (!existe) {
+                JOptionPane.showMessageDialog(null, "El " + nombreCampo + " no existe en " + nombreEntidad, "Error de validación", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error de SQL al validar " + nombreCampo + ": " + e.getMessage(), "Error de SQL", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
     }
 }
 

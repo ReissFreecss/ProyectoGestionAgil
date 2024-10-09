@@ -164,5 +164,18 @@ public class ControladorDietas {
         }
         return dieta;
     }
+    
+    // Método para verificar si existe un antecedente médico por su ID
+    public static boolean existeAntecedentePorId(int idAntecedente) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM Dietas WHERE id_dieta = ?";
+        try (PreparedStatement ps = ControladorBDSQL.conexion.prepareStatement(sql)) {
+            ps.setInt(1, idAntecedente);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0; // Devuelve true si existe al menos un antecedente con ese ID
+            }
+        }
+        return false;
+    }
 }
 
