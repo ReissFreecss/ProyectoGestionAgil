@@ -5,6 +5,7 @@
 package Validatores;
 
 import Controladores.ControladorPaciente;
+import Controladores.ControladorDietaEspecial;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -18,6 +19,17 @@ public class ValidadorDietaEspecial {
     public static boolean campoNoVacio(String campo, String nombreCampo) {
         if (campo == null || campo.trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor, complete el campo: " + nombreCampo, "Error de validación", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+    
+    // Valida si un número entero es válido
+    public static boolean esNumeroEntero(String valor, String nombreCampo) {
+        try {
+            Integer.parseInt(valor);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El valor del campo " + nombreCampo + " debe ser un número entero válido.", "Error de validación", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         return true;
@@ -49,6 +61,22 @@ public class ValidadorDietaEspecial {
                campoNoVacio(resultadoDietaEspecial, "Resultado de la Dieta Especial") &&
                campoNoVacio(apegoDieta, "Apego a la Dieta") &&
                idPacienteExisteEnBaseDatos(idPaciente, "ID Paciente");
+    }
+    
+    // Valida si un ID existe en la base de datos
+    public static boolean idExisteEnBaseDatos(int id, String nombreEntidad, String nombreCampo) {
+        try {
+            // Aquí iría la lógica para verificar si el ID existe en la base de datos
+            boolean existe = ControladorDietaEspecial.existeDietaPorId(id); // Ejemplo para antecedentes médicos
+            if (!existe) {
+                JOptionPane.showMessageDialog(null, "El " + nombreCampo + " no existe en " + nombreEntidad, "Error de validación", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error de SQL al validar " + nombreCampo + ": " + e.getMessage(), "Error de SQL", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
     }
 }
 

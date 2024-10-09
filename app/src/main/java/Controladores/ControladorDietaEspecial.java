@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class ControladorDietaEspecial {
 
     // Método para obtener todas las dietas especiales de la base de datos
-    public static ArrayList<EntidadDietaEspecial> PedirTodas() throws IllegalAccessError, SQLException, IOException {
+    public static ArrayList<EntidadDietaEspecial> PedirTodos() throws IllegalAccessError, SQLException, IOException {
         ArrayList<EntidadDietaEspecial> resultado = new ArrayList<>();
 
         // Verifica si la conexión a la base de datos es nula
