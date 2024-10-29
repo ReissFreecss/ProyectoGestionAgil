@@ -164,8 +164,14 @@ public class VistaIndicadoresDieteticos extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         JTA_MediacamentoPeso = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(58, 71, 80));
+        setForeground(new java.awt.Color(27, 38, 44));
+        setFont(new java.awt.Font("Rockwell", 1, 12)); // NOI18N
         setPreferredSize(new java.awt.Dimension(648, 441));
 
+        TBDatos.setBackground(new java.awt.Color(48, 56, 65));
+        TBDatos.setFont(new java.awt.Font("Rockwell", 1, 12)); // NOI18N
+        TBDatos.setForeground(new java.awt.Color(221, 221, 221));
         TBDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -181,8 +187,15 @@ public class VistaIndicadoresDieteticos extends javax.swing.JPanel {
         TBDatos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(TBDatos);
 
+        jPanel1.setBackground(new java.awt.Color(82, 97, 107));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Acciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Black", 0, 14))); // NOI18N
+        jPanel1.setForeground(new java.awt.Color(221, 221, 221));
+        jPanel1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
+        btnRefrescar_.setBackground(new java.awt.Color(73, 84, 100));
+        btnRefrescar_.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnRefrescar_.setForeground(new java.awt.Color(221, 221, 221));
+        btnRefrescar_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/refresh.png"))); // NOI18N
         btnRefrescar_.setText("Refrescar");
         btnRefrescar_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,6 +203,10 @@ public class VistaIndicadoresDieteticos extends javax.swing.JPanel {
             }
         });
 
+        btnAgregar_.setBackground(new java.awt.Color(73, 84, 100));
+        btnAgregar_.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnAgregar_.setForeground(new java.awt.Color(221, 221, 221));
+        btnAgregar_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
         btnAgregar_.setText("Agregar");
         btnAgregar_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -197,6 +214,10 @@ public class VistaIndicadoresDieteticos extends javax.swing.JPanel {
             }
         });
 
+        btnEditar_.setBackground(new java.awt.Color(73, 84, 100));
+        btnEditar_.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnEditar_.setForeground(new java.awt.Color(221, 221, 221));
+        btnEditar_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/edit.png"))); // NOI18N
         btnEditar_.setText("Editar");
         btnEditar_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,6 +225,10 @@ public class VistaIndicadoresDieteticos extends javax.swing.JPanel {
             }
         });
 
+        btnEliminar_.setBackground(new java.awt.Color(73, 84, 100));
+        btnEliminar_.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnEliminar_.setForeground(new java.awt.Color(221, 221, 221));
+        btnEliminar_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/delete.png"))); // NOI18N
         btnEliminar_.setText("Eliminar");
         btnEliminar_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,6 +236,14 @@ public class VistaIndicadoresDieteticos extends javax.swing.JPanel {
             }
         });
 
+        JTA_BuscaID.setBackground(new java.awt.Color(255, 253, 249));
+        JTA_BuscaID.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        JTA_BuscaID.setForeground(new java.awt.Color(27, 38, 44));
+
+        btnBuscaID_.setBackground(new java.awt.Color(73, 84, 100));
+        btnBuscaID_.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnBuscaID_.setForeground(new java.awt.Color(221, 221, 221));
+        btnBuscaID_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search.png"))); // NOI18N
         btnBuscaID_.setText("Buscar ID");
         btnBuscaID_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,6 +251,14 @@ public class VistaIndicadoresDieteticos extends javax.swing.JPanel {
             }
         });
 
+        JTA_BuscaIDPaciente.setBackground(new java.awt.Color(255, 253, 249));
+        JTA_BuscaIDPaciente.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        JTA_BuscaIDPaciente.setForeground(new java.awt.Color(27, 38, 44));
+
+        btnBuscaPaciente_.setBackground(new java.awt.Color(73, 84, 100));
+        btnBuscaPaciente_.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnBuscaPaciente_.setForeground(new java.awt.Color(221, 221, 221));
+        btnBuscaPaciente_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search.png"))); // NOI18N
         btnBuscaPaciente_.setText("Buscar ID Paciente");
         btnBuscaPaciente_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -232,7 +273,7 @@ public class VistaIndicadoresDieteticos extends javax.swing.JPanel {
             .addComponent(btnAgregar_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnEditar_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnEliminar_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnRefrescar_, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+            .addComponent(btnRefrescar_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(JTA_BuscaID)
             .addComponent(btnBuscaID_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(JTA_BuscaIDPaciente)
@@ -260,45 +301,109 @@ public class VistaIndicadoresDieteticos extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel2.setBackground(new java.awt.Color(82, 97, 107));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Black", 0, 14))); // NOI18N
+        jPanel2.setForeground(new java.awt.Color(221, 221, 221));
+        jPanel2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
+        jLabel1.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(221, 221, 221));
         jLabel1.setText("ID Paciente:");
 
+        jLabel2.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(221, 221, 221));
         jLabel2.setText("Preparador Alimentos:");
 
+        JTA_PreparadorAlimentos.setBackground(new java.awt.Color(255, 253, 249));
+        JTA_PreparadorAlimentos.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        JTA_PreparadorAlimentos.setForeground(new java.awt.Color(27, 38, 44));
+
+        JTA_IDPaciente.setBackground(new java.awt.Color(255, 253, 249));
+        JTA_IDPaciente.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        JTA_IDPaciente.setForeground(new java.awt.Color(27, 38, 44));
+
+        jLabel3.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(221, 221, 221));
         jLabel3.setText("Hora Apetito:");
 
+        JTA_HoraApetito.setBackground(new java.awt.Color(255, 253, 249));
+        JTA_HoraApetito.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        JTA_HoraApetito.setForeground(new java.awt.Color(27, 38, 44));
+
+        jLabel4.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(221, 221, 221));
         jLabel4.setText("Alimentos No Preferidos:");
 
+        jLabel5.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(221, 221, 221));
         jLabel5.setText("Alimentos Preferidos:");
 
+        jLabel6.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(221, 221, 221));
         jLabel6.setText("Suplemento:");
 
+        jLabel8.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(221, 221, 221));
         jLabel8.setText("Dosis Suplemento:");
 
+        jLabel9.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(221, 221, 221));
         jLabel9.setText("ID:");
 
         JTA_IDIndicaorDietetico.setEditable(false);
+        JTA_IDIndicaorDietetico.setBackground(new java.awt.Color(255, 253, 249));
+        JTA_IDIndicaorDietetico.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        JTA_IDIndicaorDietetico.setForeground(new java.awt.Color(27, 38, 44));
 
+        JTA_AlimentosPreferidos.setBackground(new java.awt.Color(255, 253, 249));
+        JTA_AlimentosPreferidos.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        JTA_AlimentosPreferidos.setForeground(new java.awt.Color(27, 38, 44));
         JTA_AlimentosPreferidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JTA_AlimentosPreferidosActionPerformed(evt);
             }
         });
 
+        JTA_AlimentosNoPreferidos.setBackground(new java.awt.Color(255, 253, 249));
+        JTA_AlimentosNoPreferidos.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        JTA_AlimentosNoPreferidos.setForeground(new java.awt.Color(27, 38, 44));
+
+        JTA_Suplemento.setBackground(new java.awt.Color(255, 253, 249));
+        JTA_Suplemento.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        JTA_Suplemento.setForeground(new java.awt.Color(27, 38, 44));
+
+        JTA_DosisSuplemento.setBackground(new java.awt.Color(255, 253, 249));
+        JTA_DosisSuplemento.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        JTA_DosisSuplemento.setForeground(new java.awt.Color(27, 38, 44));
+
+        jLabel7.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(221, 221, 221));
         jLabel7.setText("Agua Consumida:");
 
+        JSP_Agua.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
         JSP_Agua.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
 
+        jLabel10.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(221, 221, 221));
         jLabel10.setText("Refresco Consumido:");
 
+        JSP_Refresco.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
         JSP_Refresco.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
 
+        jLabel11.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(221, 221, 221));
         jLabel11.setText("Leche Consumido:");
 
+        JSP_Leche.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
         JSP_Leche.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
 
+        jLabel12.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(221, 221, 221));
         jLabel12.setText("Medicameno para peso:");
+
+        JTA_MediacamentoPeso.setBackground(new java.awt.Color(255, 253, 249));
+        JTA_MediacamentoPeso.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        JTA_MediacamentoPeso.setForeground(new java.awt.Color(27, 38, 44));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -399,7 +504,7 @@ public class VistaIndicadoresDieteticos extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel7)
                         .addComponent(JSP_Agua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -419,7 +524,7 @@ public class VistaIndicadoresDieteticos extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

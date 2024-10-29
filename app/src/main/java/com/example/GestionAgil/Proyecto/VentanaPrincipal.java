@@ -1,20 +1,21 @@
 package com.example.GestionAgil.Proyecto;
 
 import Controladores.ControladorBDSQL;
-import com.formdev.flatlaf.FlatDarkLaf;
-import com.formdev.flatlaf.FlatLightLaf;
 import java.io.File;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 import javax.swing.JFileChooser;
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.metal.MetalLookAndFeel;
+
 
 /**
  *
@@ -53,12 +54,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane3 = new javax.swing.JTabbedPane();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jPanel15 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel6 = new javax.swing.JPanel();
         cRUDPacientes1 = new Vistas.VistaPacientes();
@@ -86,6 +82,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         vistaDietas1 = new Vistas.VistaDietas();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -94,7 +94,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(600, 400));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -104,56 +103,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        jLabel1.setText("Tema: ");
+        jPanel15.setBackground(new java.awt.Color(57, 62, 70));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Oscuro", "Claro" }));
-
-        jLabel2.setText("jLabel2");
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        jLabel3.setText("Ubicacion de la base de datos:");
-
-        jButton1.setText("Comprobar Conexion");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addGap(24, 24, 24)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jButton1))
-                .addGap(22, 22, 22))
-        );
-
+        jTabbedPane2.setBackground(new java.awt.Color(57, 62, 70));
+        jTabbedPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(81, 94, 99), 2));
+        jTabbedPane2.setForeground(new java.awt.Color(253, 253, 253));
         jTabbedPane2.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        jTabbedPane2.setFont(new java.awt.Font("Rockwell", 1, 12)); // NOI18N
 
+        jPanel6.setBackground(new java.awt.Color(255, 253, 249));
+        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel6.setLayout(new java.awt.GridLayout(1, 0));
+
+        cRUDPacientes1.setForeground(new java.awt.Color(253, 253, 253));
         jPanel6.add(cRUDPacientes1);
 
         jTabbedPane2.addTab("Pacientes", jPanel6);
@@ -198,21 +160,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Dieta Especial", jPanel11);
 
-        jPanel12.setLayout(new java.awt.GridLayout());
+        jPanel12.setLayout(new java.awt.GridLayout(1, 0));
         jPanel12.add(vistaIndicadoresAntropometricos1);
 
         jTabbedPane2.addTab("Indicadores Antropometricos", jPanel12);
 
-        jPanel13.setLayout(new java.awt.GridLayout());
+        jPanel13.setLayout(new java.awt.GridLayout(1, 0));
         jPanel13.add(vistaDatosInterpretacion1);
 
         jTabbedPane2.addTab("Datos Interpretacion", jPanel13);
 
-        jPanel14.setLayout(new java.awt.GridLayout());
+        jPanel14.setLayout(new java.awt.GridLayout(1, 0));
         jPanel14.add(vistaDietas1);
 
         jTabbedPane2.addTab("Dietas", jPanel14);
 
+        jPanel1.setBackground(new java.awt.Color(57, 62, 70));
+
+        jLabel4.setFont(new java.awt.Font("Harlow Solid Italic", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(253, 253, 253));
         jLabel4.setText("Nutrición y Fitness MX");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -222,18 +188,101 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addGap(25, 25, 25))
+                .addGap(22, 22, 22))
         );
 
-        jMenu1.setText("Archivo");
+        jPanel3.setBackground(new java.awt.Color(57, 62, 70));
+        jPanel3.setForeground(new java.awt.Color(27, 38, 44));
 
+        jLabel2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(253, 253, 253));
+        jLabel2.setText("jLabel2");
+
+        jLabel3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(253, 253, 253));
+        jLabel3.setText("Ubicacion de la base de datos:");
+
+        jButton1.setBackground(new java.awt.Color(255, 253, 249));
+        jButton1.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(27, 38, 44));
+        jButton1.setText("Comprobar Conexion");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(156, 156, 156)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addGap(24, 24, 24)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jButton1))
+                .addGap(28, 28, 28))
+        );
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1001, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        getContentPane().add(jPanel15, java.awt.BorderLayout.CENTER);
+
+        jMenuBar1.setForeground(new java.awt.Color(27, 38, 44));
+        jMenuBar1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+
+        jMenu1.setBackground(new java.awt.Color(255, 253, 249));
+        jMenu1.setForeground(new java.awt.Color(27, 38, 44));
+        jMenu1.setText("Archivo");
+        jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jMenu1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+
+        jMenuItem2.setBackground(new java.awt.Color(208, 201, 192));
+        jMenuItem2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jMenuItem2.setForeground(new java.awt.Color(27, 38, 44));
         jMenuItem2.setText("Nueva BD");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -243,6 +292,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem3.setBackground(new java.awt.Color(208, 201, 192));
+        jMenuItem3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jMenuItem3.setForeground(new java.awt.Color(27, 38, 44));
         jMenuItem3.setText("Cargar");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -253,8 +305,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setBackground(new java.awt.Color(255, 253, 249));
+        jMenu2.setForeground(new java.awt.Color(27, 38, 44));
         jMenu2.setText("Ayuda");
+        jMenu2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
 
+        jMenuItem1.setBackground(new java.awt.Color(208, 201, 192));
+        jMenuItem1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jMenuItem1.setForeground(new java.awt.Color(27, 38, 44));
         jMenuItem1.setText("Acerca de");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -266,29 +324,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(jTabbedPane2)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane2)
-                .addContainerGap())
-        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -352,7 +387,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        prefs.put("NOMBRE_TEMA", jComboBox1.getSelectedItem().toString());
+    
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosing
 
@@ -392,16 +427,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public static void main(String args[]) {
         String tema = prefs.get("NOMBRE_TEMA", "Claro");
         System.out.println("tema" + tema);
-        
-        
-
         try {
 
             switch (tema) {
                 case "Claro" ->
                     UIManager.setLookAndFeel(new FlatLightLaf());
-                case "Oscuro" ->
-                    UIManager.setLookAndFeel(new FlatDarkLaf());
                 default -> {
                     System.err.println("Error el tema " + tema + "no existe. ");
                     UIManager.setLookAndFeel(new MetalLookAndFeel());
@@ -412,7 +442,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             System.err.println(e.getMessage());
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, e);
 
-        }
+        } 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -425,8 +455,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private Vistas.VistaAntecedentesMedicos cRUDAntecedentesMedicos1;
     private Vistas.VistaPacientes cRUDPacientes1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -442,6 +470,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

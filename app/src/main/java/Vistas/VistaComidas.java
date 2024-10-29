@@ -155,8 +155,14 @@ public class VistaComidas extends javax.swing.JPanel {
         CB_ComidaCalle = new javax.swing.JComboBox<>();
         SP_FrecienciaSemanal = new javax.swing.JSpinner();
 
+        setBackground(new java.awt.Color(58, 71, 80));
+        setForeground(new java.awt.Color(27, 38, 44));
+        setFont(new java.awt.Font("Rockwell", 1, 12)); // NOI18N
         setPreferredSize(new java.awt.Dimension(648, 441));
 
+        TBDatos.setBackground(new java.awt.Color(48, 56, 65));
+        TBDatos.setFont(new java.awt.Font("Rockwell", 1, 12)); // NOI18N
+        TBDatos.setForeground(new java.awt.Color(221, 221, 221));
         TBDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -172,8 +178,15 @@ public class VistaComidas extends javax.swing.JPanel {
         TBDatos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(TBDatos);
 
+        jPanel1.setBackground(new java.awt.Color(82, 97, 107));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Acciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Black", 0, 14))); // NOI18N
+        jPanel1.setForeground(new java.awt.Color(221, 221, 221));
+        jPanel1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
+        btnRefrescar_.setBackground(new java.awt.Color(73, 84, 100));
+        btnRefrescar_.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnRefrescar_.setForeground(new java.awt.Color(221, 221, 221));
+        btnRefrescar_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/refresh.png"))); // NOI18N
         btnRefrescar_.setText("Refrescar");
         btnRefrescar_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,6 +194,10 @@ public class VistaComidas extends javax.swing.JPanel {
             }
         });
 
+        btnAgregar_.setBackground(new java.awt.Color(73, 84, 100));
+        btnAgregar_.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnAgregar_.setForeground(new java.awt.Color(221, 221, 221));
+        btnAgregar_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
         btnAgregar_.setText("Agregar");
         btnAgregar_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,6 +205,10 @@ public class VistaComidas extends javax.swing.JPanel {
             }
         });
 
+        btnEditar_.setBackground(new java.awt.Color(73, 84, 100));
+        btnEditar_.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnEditar_.setForeground(new java.awt.Color(221, 221, 221));
+        btnEditar_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/edit.png"))); // NOI18N
         btnEditar_.setText("Editar");
         btnEditar_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,6 +216,10 @@ public class VistaComidas extends javax.swing.JPanel {
             }
         });
 
+        btnEliminar_.setBackground(new java.awt.Color(73, 84, 100));
+        btnEliminar_.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnEliminar_.setForeground(new java.awt.Color(221, 221, 221));
+        btnEliminar_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/delete.png"))); // NOI18N
         btnEliminar_.setText("Eliminar");
         btnEliminar_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,6 +227,14 @@ public class VistaComidas extends javax.swing.JPanel {
             }
         });
 
+        JTA_BuscaID.setBackground(new java.awt.Color(255, 253, 249));
+        JTA_BuscaID.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        JTA_BuscaID.setForeground(new java.awt.Color(27, 38, 44));
+
+        btnBuscaID_.setBackground(new java.awt.Color(73, 84, 100));
+        btnBuscaID_.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnBuscaID_.setForeground(new java.awt.Color(221, 221, 221));
+        btnBuscaID_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search.png"))); // NOI18N
         btnBuscaID_.setText("Buscar ID");
         btnBuscaID_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,6 +242,14 @@ public class VistaComidas extends javax.swing.JPanel {
             }
         });
 
+        JTA_BuscaIDPaciente.setBackground(new java.awt.Color(255, 253, 249));
+        JTA_BuscaIDPaciente.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        JTA_BuscaIDPaciente.setForeground(new java.awt.Color(27, 38, 44));
+
+        btnBuscaPaciente_.setBackground(new java.awt.Color(73, 84, 100));
+        btnBuscaPaciente_.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnBuscaPaciente_.setForeground(new java.awt.Color(221, 221, 221));
+        btnBuscaPaciente_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search.png"))); // NOI18N
         btnBuscaPaciente_.setText("Buscar ID Paciente");
         btnBuscaPaciente_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -223,7 +264,7 @@ public class VistaComidas extends javax.swing.JPanel {
             .addComponent(btnAgregar_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnEditar_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnEliminar_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnRefrescar_, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+            .addComponent(btnRefrescar_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(JTA_BuscaID)
             .addComponent(btnBuscaID_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(JTA_BuscaIDPaciente)
@@ -251,36 +292,86 @@ public class VistaComidas extends javax.swing.JPanel {
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
+        jPanel2.setBackground(new java.awt.Color(82, 97, 107));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Black", 0, 14))); // NOI18N
+        jPanel2.setForeground(new java.awt.Color(221, 221, 221));
+        jPanel2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
+        jLabel1.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(221, 221, 221));
         jLabel1.setText("ID Paciente:");
 
+        jLabel2.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(221, 221, 221));
         jLabel2.setText("Comdia:");
 
+        JTA_Platillo.setBackground(new java.awt.Color(255, 253, 249));
+        JTA_Platillo.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        JTA_Platillo.setForeground(new java.awt.Color(27, 38, 44));
+
+        JTA_IDPaciente.setBackground(new java.awt.Color(255, 253, 249));
+        JTA_IDPaciente.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        JTA_IDPaciente.setForeground(new java.awt.Color(27, 38, 44));
+
+        jLabel3.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(221, 221, 221));
         jLabel3.setText("Horario");
 
+        JTA_Horario.setBackground(new java.awt.Color(255, 253, 249));
+        JTA_Horario.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        JTA_Horario.setForeground(new java.awt.Color(27, 38, 44));
+
+        jLabel4.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(221, 221, 221));
         jLabel4.setText("Ingredientes:");
 
+        jLabel5.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(221, 221, 221));
         jLabel5.setText("Platillo:");
 
+        jLabel6.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(221, 221, 221));
         jLabel6.setText("Cantidad:");
 
+        jLabel8.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(221, 221, 221));
         jLabel8.setText("Comida calle:");
 
+        jLabel9.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(221, 221, 221));
         jLabel9.setText("ID:");
 
         JTA_IDComida.setEditable(false);
+        JTA_IDComida.setBackground(new java.awt.Color(255, 253, 249));
+        JTA_IDComida.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        JTA_IDComida.setForeground(new java.awt.Color(27, 38, 44));
 
+        jLabel7.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(221, 221, 221));
         jLabel7.setText("Frecuencia Semanal:");
 
+        CB_Comida.setBackground(new java.awt.Color(255, 253, 249));
+        CB_Comida.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        CB_Comida.setForeground(new java.awt.Color(27, 38, 44));
         CB_Comida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Desayuno", "Almuerzo", "Comida", "Cena", "Otro" }));
 
+        JTA_Ingredientes.setBackground(new java.awt.Color(255, 253, 249));
         JTA_Ingredientes.setColumns(20);
+        JTA_Ingredientes.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        JTA_Ingredientes.setForeground(new java.awt.Color(27, 38, 44));
         JTA_Ingredientes.setRows(5);
         jScrollPane2.setViewportView(JTA_Ingredientes);
 
+        JTA_Cantidad.setBackground(new java.awt.Color(255, 253, 249));
+        JTA_Cantidad.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        JTA_Cantidad.setForeground(new java.awt.Color(27, 38, 44));
+
+        CB_ComidaCalle.setBackground(new java.awt.Color(255, 253, 249));
+        CB_ComidaCalle.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        CB_ComidaCalle.setForeground(new java.awt.Color(27, 38, 44));
         CB_ComidaCalle.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Si" }));
 
+        SP_FrecienciaSemanal.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
         SP_FrecienciaSemanal.setModel(new javax.swing.SpinnerNumberModel(0, 0, 7, 1));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -376,7 +467,7 @@ public class VistaComidas extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

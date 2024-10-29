@@ -37,7 +37,10 @@ public class AcercaDe extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTextArea1.setEditable(false);
+        jTextArea1.setBackground(new java.awt.Color(82, 97, 107));
         jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jTextArea1.setForeground(new java.awt.Color(221, 221, 221));
         jTextArea1.setRows(5);
         jTextArea1.setText("Gestion Agil de Proyectos XA\nEquipo: 5\nIntegrantes:\n➢ Carlos Perez Calderon NC. 19091404 (Product Owner)\n➢ Julian Salinas Vazques NC. 20091180 (Scrum Master) \n➢ Maria Guadalupe Hernandez Gregorio NC. 20520361 (Develpment Team)\n➢ Hector Faraid Cardoso Velazquez NC. 20091050 (Develpment Team)\n➢ Crhistopher Rebolledo Caballero NC. 20090290 (Develpment Team)\n\nEl presente proyecto tiene como objetivo mejorar la administracion de los clientes \npara el nutricionista Francisco Javier Aleman Gutierrez");
         jScrollPane1.setViewportView(jTextArea1);

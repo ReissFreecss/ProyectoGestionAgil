@@ -148,8 +148,16 @@ public class VistaPacientes extends javax.swing.JPanel {
         JTA_Telefono = new javax.swing.JTextField();
         jD_Fecha = new com.toedter.calendar.JDateChooser();
 
+        setBackground(new java.awt.Color(58, 71, 80));
+        setForeground(new java.awt.Color(27, 38, 44));
+        setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
         setPreferredSize(new java.awt.Dimension(648, 441));
 
+        jScrollPane1.setForeground(new java.awt.Color(27, 38, 44));
+
+        TBDatos.setBackground(new java.awt.Color(48, 56, 65));
+        TBDatos.setFont(new java.awt.Font("Rockwell", 1, 12)); // NOI18N
+        TBDatos.setForeground(new java.awt.Color(221, 221, 221));
         TBDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -165,8 +173,15 @@ public class VistaPacientes extends javax.swing.JPanel {
         TBDatos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(TBDatos);
 
+        jPanel1.setBackground(new java.awt.Color(82, 97, 107));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Acciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Black", 0, 14))); // NOI18N
+        jPanel1.setForeground(new java.awt.Color(221, 221, 221));
+        jPanel1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
+        btnRefrescar_.setBackground(new java.awt.Color(73, 84, 100));
+        btnRefrescar_.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnRefrescar_.setForeground(new java.awt.Color(221, 221, 221));
+        btnRefrescar_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/refresh.png"))); // NOI18N
         btnRefrescar_.setText("Refrescar");
         btnRefrescar_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,6 +189,10 @@ public class VistaPacientes extends javax.swing.JPanel {
             }
         });
 
+        btnAgregar_.setBackground(new java.awt.Color(73, 84, 100));
+        btnAgregar_.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnAgregar_.setForeground(new java.awt.Color(221, 221, 221));
+        btnAgregar_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
         btnAgregar_.setText("Agregar");
         btnAgregar_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,6 +200,10 @@ public class VistaPacientes extends javax.swing.JPanel {
             }
         });
 
+        btnEditar_.setBackground(new java.awt.Color(73, 84, 100));
+        btnEditar_.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnEditar_.setForeground(new java.awt.Color(221, 221, 221));
+        btnEditar_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/edit.png"))); // NOI18N
         btnEditar_.setText("Editar");
         btnEditar_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,6 +211,10 @@ public class VistaPacientes extends javax.swing.JPanel {
             }
         });
 
+        btnEliminar_.setBackground(new java.awt.Color(73, 84, 100));
+        btnEliminar_.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnEliminar_.setForeground(new java.awt.Color(221, 221, 221));
+        btnEliminar_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/delete.png"))); // NOI18N
         btnEliminar_.setText("Eliminar");
         btnEliminar_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,6 +222,14 @@ public class VistaPacientes extends javax.swing.JPanel {
             }
         });
 
+        JTA_BuscaID.setBackground(new java.awt.Color(255, 253, 249));
+        JTA_BuscaID.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        JTA_BuscaID.setForeground(new java.awt.Color(27, 38, 44));
+
+        btnBuscaID_.setBackground(new java.awt.Color(73, 84, 100));
+        btnBuscaID_.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnBuscaID_.setForeground(new java.awt.Color(221, 221, 221));
+        btnBuscaID_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search.png"))); // NOI18N
         btnBuscaID_.setText("Buscar ID");
         btnBuscaID_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,6 +237,14 @@ public class VistaPacientes extends javax.swing.JPanel {
             }
         });
 
+        JTA_BuscaNombre.setBackground(new java.awt.Color(255, 253, 249));
+        JTA_BuscaNombre.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        JTA_BuscaNombre.setForeground(new java.awt.Color(27, 38, 44));
+
+        btnBuscaNombre_.setBackground(new java.awt.Color(73, 84, 100));
+        btnBuscaNombre_.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnBuscaNombre_.setForeground(new java.awt.Color(221, 221, 221));
+        btnBuscaNombre_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search.png"))); // NOI18N
         btnBuscaNombre_.setText("Buscar Nombre");
         btnBuscaNombre_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,7 +259,7 @@ public class VistaPacientes extends javax.swing.JPanel {
             .addComponent(btnAgregar_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnEditar_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnEliminar_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnRefrescar_, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+            .addComponent(btnRefrescar_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(JTA_BuscaID)
             .addComponent(btnBuscaID_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(JTA_BuscaNombre)
@@ -244,27 +287,76 @@ public class VistaPacientes extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel2.setBackground(new java.awt.Color(82, 97, 107));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Black", 0, 14))); // NOI18N
+        jPanel2.setForeground(new java.awt.Color(221, 221, 221));
+        jPanel2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
+        jLabel1.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(221, 221, 221));
         jLabel1.setText("ID:");
 
+        jLabel2.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(221, 221, 221));
         jLabel2.setText("Nombre:");
 
-        JTA_ID.setEditable(false);
+        JTA_Nombre.setBackground(new java.awt.Color(255, 253, 249));
+        JTA_Nombre.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        JTA_Nombre.setForeground(new java.awt.Color(27, 38, 44));
 
+        JTA_ID.setEditable(false);
+        JTA_ID.setBackground(new java.awt.Color(255, 253, 249));
+        JTA_ID.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        JTA_ID.setForeground(new java.awt.Color(27, 38, 44));
+
+        jLabel3.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(221, 221, 221));
         jLabel3.setText("Edad:");
 
+        JTA_Edad.setBackground(new java.awt.Color(255, 253, 249));
+        JTA_Edad.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        JTA_Edad.setForeground(new java.awt.Color(27, 38, 44));
+
+        jLabel4.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(221, 221, 221));
         jLabel4.setText("Genero:");
 
+        JCB_Genero.setBackground(new java.awt.Color(255, 253, 249));
+        JCB_Genero.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        JCB_Genero.setForeground(new java.awt.Color(27, 38, 44));
         JCB_Genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
 
+        jLabel5.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(221, 221, 221));
         jLabel5.setText("Ocupacion:");
 
+        JTA_Ocupacion.setBackground(new java.awt.Color(255, 253, 249));
+        JTA_Ocupacion.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        JTA_Ocupacion.setForeground(new java.awt.Color(27, 38, 44));
+
+        jLabel6.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(221, 221, 221));
         jLabel6.setText("Motivo Consulta:");
 
+        JTA_MotivoConsulta.setBackground(new java.awt.Color(255, 253, 249));
+        JTA_MotivoConsulta.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        JTA_MotivoConsulta.setForeground(new java.awt.Color(27, 38, 44));
+
+        jLabel7.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(221, 221, 221));
         jLabel7.setText("Fecha de consulta:");
 
+        jLabel8.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(221, 221, 221));
         jLabel8.setText("Telefono:");
+
+        JTA_Telefono.setBackground(new java.awt.Color(255, 253, 249));
+        JTA_Telefono.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        JTA_Telefono.setForeground(new java.awt.Color(27, 38, 44));
+
+        jD_Fecha.setBackground(new java.awt.Color(255, 253, 249));
+        jD_Fecha.setForeground(new java.awt.Color(27, 38, 44));
+        jD_Fecha.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -328,7 +420,7 @@ public class VistaPacientes extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(JTA_Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -348,7 +440,7 @@ public class VistaPacientes extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
