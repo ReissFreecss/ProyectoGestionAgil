@@ -12,6 +12,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.metal.MetalLookAndFeel;
@@ -80,6 +81,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         vistaDatosInterpretacion1 = new Vistas.VistaDatosInterpretacion();
         jPanel14 = new javax.swing.JPanel();
         vistaDietas1 = new Vistas.VistaDietas();
+        jPanel16 = new javax.swing.JPanel();
+        vistaSeguimiento1 = new Vistas.VistaSeguimiento();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -102,8 +105,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 formWindowClosing(evt);
             }
         });
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel15.setBackground(new java.awt.Color(57, 62, 70));
+        jPanel15.setLayout(new java.awt.BorderLayout());
 
         jTabbedPane2.setBackground(new java.awt.Color(57, 62, 70));
         jTabbedPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(81, 94, 99), 2));
@@ -175,10 +180,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Dietas", jPanel14);
 
+        jPanel16.setLayout(new java.awt.GridLayout());
+        jPanel16.add(vistaSeguimiento1);
+
+        jTabbedPane2.addTab("Seguimiento", jPanel16);
+
+        jPanel15.add(jTabbedPane2, java.awt.BorderLayout.CENTER);
+
         jPanel1.setBackground(new java.awt.Color(57, 62, 70));
 
-        jLabel4.setFont(new java.awt.Font("Harlow Solid Italic", 0, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Harlow Solid Italic", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(253, 253, 253));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Nutrición y Fitness MX");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -187,16 +200,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 1169, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
                 .addComponent(jLabel4)
-                .addGap(22, 22, 22))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
+
+        jPanel15.add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
         jPanel3.setBackground(new java.awt.Color(57, 62, 70));
         jPanel3.setForeground(new java.awt.Color(27, 38, 44));
@@ -224,52 +239,30 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(156, 156, 156)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addGap(24, 24, 24)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2))
+                    .addComponent(jButton1))
+                .addContainerGap(924, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jButton1))
-                .addGap(28, 28, 28))
-        );
-
-        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1001, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel15Layout.setVerticalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(12, Short.MAX_VALUE)
+                .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18))
         );
 
-        getContentPane().add(jPanel15, java.awt.BorderLayout.CENTER);
+        jPanel15.add(jPanel3, java.awt.BorderLayout.PAGE_END);
+
+        getContentPane().add(jPanel15);
 
         jMenuBar1.setForeground(new java.awt.Color(27, 38, 44));
         jMenuBar1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
@@ -424,25 +417,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws UnsupportedLookAndFeelException {
         String tema = prefs.get("NOMBRE_TEMA", "Claro");
         System.out.println("tema" + tema);
-        try {
-
-            switch (tema) {
-                case "Claro" ->
-                    UIManager.setLookAndFeel(new FlatLightLaf());
-                default -> {
-                    System.err.println("Error el tema " + tema + "no existe. ");
-                    UIManager.setLookAndFeel(new MetalLookAndFeel());
-                }
-            }
-
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, e);
-
-        } 
+        UIManager.setLookAndFeel(new FlatLightLaf());
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -471,6 +450,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -491,5 +471,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private Vistas.VistaEstiloVida vistaEstiloVida1;
     private Vistas.VistaIndicadoresAntropometricos vistaIndicadoresAntropometricos1;
     private Vistas.VistaIndicadoresDieteticos vistaIndicadoresDieteticos1;
+    private Vistas.VistaSeguimiento vistaSeguimiento1;
     // End of variables declaration//GEN-END:variables
 }

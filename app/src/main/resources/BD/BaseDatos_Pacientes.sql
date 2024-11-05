@@ -165,4 +165,23 @@ CREATE TABLE IF NOT EXISTS "Dietas" (
 	FOREIGN KEY("id_paciente") REFERENCES "Pacientes"("id_paciente") ON DELETE CASCADE,
 	PRIMARY KEY("id_dieta" AUTOINCREMENT)
 );
+DROP TABLE IF EXISTS "Seguimiento";
+CREATE TABLE IF NOT EXISTS "Seguimiento" (
+    "id_seguimiento" INTEGER,
+    "id_paciente" INTEGER,
+    "fecha" DATE DEFAULT NULL,
+    "apego_plan" TEXT NOT NULL DEFAULT '0',
+    "alimentos_fuera_plan" TEXT NOT NULL DEFAULT 'Ninguno',
+    "paso_hambre" TEXT NOT NULL DEFAULT 'No',
+    "dias_entrenamiento" INTEGER DEFAULT NULL,
+    "mejoro_ejercicio" TEXT NOT NULL DEFAULT 'No',
+    "jugos_refrescos_alcohol" TEXT NOT NULL DEFAULT 'No',
+    "litros_agua" TEXT NOT NULL DEFAULT '0',
+    "malestares_gastricos" TEXT NOT NULL DEFAULT 'Ninguno',
+    "horas_sueno" TEXT NOT NULL DEFAULT '0',
+    "problema_solucion" TEXT NOT NULL DEFAULT 'Ninguno',
+    "extras_observaciones" TEXT NOT NULL DEFAULT 'Ninguna',
+    FOREIGN KEY("id_paciente") REFERENCES "Pacientes"("id_paciente") ON DELETE CASCADE,
+    PRIMARY KEY("id_seguimiento" AUTOINCREMENT)
+);
 COMMIT;
