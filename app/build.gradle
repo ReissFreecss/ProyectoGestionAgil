@@ -32,6 +32,9 @@ dependencies {
 
     // Libreria del calendario
     implementation group: 'com.toedter', name: 'jcalendar', version: '1.4'
+    
+    // Libreria para generar y manipular PDFs
+    implementation 'com.itextpdf:itext7-core:7.2.5'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

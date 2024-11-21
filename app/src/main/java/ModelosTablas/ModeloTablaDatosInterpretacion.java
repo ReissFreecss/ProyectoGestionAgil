@@ -14,30 +14,31 @@ import javax.swing.table.AbstractTableModel;
  * @author darkd
  */
 public class ModeloTablaDatosInterpretacion extends AbstractTableModel {
+
     // Lista de datos de interpretación que serán mostrados en la tabla
     private ArrayList<EntidadDatosInterpretacion> datos;
 
     // Nombres de las columnas de la tabla
     String columnas[] = {
-        "ID Datos Interpretación", "ID Paciente", "Fecha", 
-        "Peso", "Porcentaje Grasa Corporal", 
-        "Masa Muscular", "Masa Ósea", 
-        "IMC", "Ingesta Kilocalorías", 
-        "Edad Metabólica", "Porcentaje Agua Corporal", 
-        "Grasa Visceral", "Pliegue Tricipital", 
-        "Pliegue Bicipital", "Pliegue Suprailiaco", 
+        "ID Datos Interpretación", "ID Paciente", "Fecha",
+        "Peso", "Porcentaje Grasa Corporal",
+        "Masa Muscular", "Masa Ósea",
+        "IMC", "Ingesta Kilocalorías",
+        "Edad Metabólica", "Porcentaje Agua Corporal",
+        "Grasa Visceral", "Pliegue Tricipital",
+        "Pliegue Bicipital", "Pliegue Suprailiaco",
         "Pliegue Subescapular"
     };
 
     // Tipos de datos de cada columna
     Class<?> colClasses[] = {
-        Integer.class, Integer.class, Date.class, 
-        Double.class, Double.class, 
-        Double.class, Double.class, 
-        Double.class, Double.class, 
-        Integer.class, Double.class, 
-        Double.class, Double.class, 
-        Double.class, Double.class, 
+        Integer.class, Integer.class, Date.class,
+        Double.class, Double.class,
+        Double.class, Double.class,
+        Double.class, Double.class,
+        Integer.class, Double.class,
+        Double.class, Double.class,
+        Double.class, Double.class,
         Double.class
     };
 
@@ -84,22 +85,54 @@ public class ModeloTablaDatosInterpretacion extends AbstractTableModel {
 
         // Devuelve el valor correspondiente a cada columna
         switch (columnIndex) {
-            case 0 -> { return interpretacion.getIdDatosInterpretacion(); }
-            case 1 -> { return interpretacion.getIdPaciente(); }
-            case 2 -> { return interpretacion.getFecha(); }
-            case 3 -> { return interpretacion.getPeso(); }
-            case 4 -> { return interpretacion.getPorcentajeGrasaCorporal(); }
-            case 5 -> { return interpretacion.getMasaMuscular(); }
-            case 6 -> { return interpretacion.getMasaOsea(); }
-            case 7 -> { return interpretacion.getImc(); }
-            case 8 -> { return interpretacion.getIngestaKilocalorias(); }
-            case 9 -> { return interpretacion.getEdadMetabolica(); }
-            case 10 -> { return interpretacion.getPorcentajeAguaCorporal(); }
-            case 11 -> { return interpretacion.getGrasaVisceral(); }
-            case 12 -> { return interpretacion.getPliegueTricipital(); }
-            case 13 -> { return interpretacion.getPliegueBicipital(); }
-            case 14 -> { return interpretacion.getPliegueSuprailiaco(); }
-            case 15 -> { return interpretacion.getPliegueSubescapular(); }
+            case 0 -> {
+                return interpretacion.getIdDatosInterpretacion();
+            }
+            case 1 -> {
+                return interpretacion.getIdPaciente();
+            }
+            case 2 -> {
+                return interpretacion.getFecha();
+            }
+            case 3 -> {
+                return interpretacion.getPeso();
+            }
+            case 4 -> {
+                return interpretacion.getPorcentajeGrasaCorporal();
+            }
+            case 5 -> {
+                return interpretacion.getMasaMuscular();
+            }
+            case 6 -> {
+                return interpretacion.getMasaOsea();
+            }
+            case 7 -> {
+                return interpretacion.getImc();
+            }
+            case 8 -> {
+                return interpretacion.getIngestaKilocalorias();
+            }
+            case 9 -> {
+                return interpretacion.getEdadMetabolica();
+            }
+            case 10 -> {
+                return interpretacion.getPorcentajeAguaCorporal();
+            }
+            case 11 -> {
+                return interpretacion.getGrasaVisceral();
+            }
+            case 12 -> {
+                return interpretacion.getPliegueTricipital();
+            }
+            case 13 -> {
+                return interpretacion.getPliegueBicipital();
+            }
+            case 14 -> {
+                return interpretacion.getPliegueSuprailiaco();
+            }
+            case 15 -> {
+                return interpretacion.getPliegueSubescapular();
+            }
         }
         return null;
     }
@@ -115,5 +148,12 @@ public class ModeloTablaDatosInterpretacion extends AbstractTableModel {
     public Class<?> getColumnClass(int columnIndex) {
         return colClasses[columnIndex];
     }
-}
+    // Método para obtener datos de interpretación según la fila seleccionada
 
+    public EntidadDatosInterpretacion getDatosInterpretacion(int rowIndex) {
+        if (rowIndex >= 0 && rowIndex < datos.size()) {
+            return datos.get(rowIndex);
+        }
+        return null; // Retorna null si el índice no es válido
+    }
+}

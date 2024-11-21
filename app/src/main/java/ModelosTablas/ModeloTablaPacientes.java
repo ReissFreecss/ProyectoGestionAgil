@@ -5,7 +5,8 @@ import javax.swing.table.AbstractTableModel;
 import java.util.Date;
 import java.util.ArrayList;
 
-public class ModeloTablaPacientes extends AbstractTableModel{
+public class ModeloTablaPacientes extends AbstractTableModel {
+
     // Lista de pacientes que serán mostrados en la tabla
     private ArrayList<EntidadPaciente> datos;
 
@@ -58,14 +59,30 @@ public class ModeloTablaPacientes extends AbstractTableModel{
 
         // Devuelve el valor correspondiente a cada columna
         switch (columnIndex) {
-            case 0 -> { return paciente.getIdPaciente(); }
-            case 1 -> { return paciente.getNombreCompleto(); }
-            case 2 -> { return paciente.getEdad(); }
-            case 3 -> { return paciente.getSexo(); }
-            case 4 -> { return paciente.getOcupacion(); }
-            case 5 -> { return paciente.getMotivoConsulta(); }
-            case 6 -> { return paciente.getFechaConsulta(); }
-            case 7 -> { return paciente.getTelefono(); }
+            case 0 -> {
+                return paciente.getIdPaciente();
+            }
+            case 1 -> {
+                return paciente.getNombreCompleto();
+            }
+            case 2 -> {
+                return paciente.getEdad();
+            }
+            case 3 -> {
+                return paciente.getSexo();
+            }
+            case 4 -> {
+                return paciente.getOcupacion();
+            }
+            case 5 -> {
+                return paciente.getMotivoConsulta();
+            }
+            case 6 -> {
+                return paciente.getFechaConsulta();
+            }
+            case 7 -> {
+                return paciente.getTelefono();
+            }
         }
         return null;
     }
@@ -80,5 +97,13 @@ public class ModeloTablaPacientes extends AbstractTableModel{
     @Override
     public Class<?> getColumnClass(int columnIndex) {
         return colClasses[columnIndex];
+    }
+    
+    // Método para obtener un paciente según la fila seleccionada
+    public EntidadPaciente getPaciente(int rowIndex) {
+        if (rowIndex >= 0 && rowIndex < datos.size()) {
+            return datos.get(rowIndex);
+        }
+        return null; // Retorna null si el índice no es válido
     }
 }

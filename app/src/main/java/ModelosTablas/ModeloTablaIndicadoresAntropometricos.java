@@ -14,22 +14,23 @@ import javax.swing.table.AbstractTableModel;
  * @author darkd
  */
 public class ModeloTablaIndicadoresAntropometricos extends AbstractTableModel {
+
     // Lista de indicadores antropométricos que serán mostrados en la tabla
     private ArrayList<EntidadIndicadoresAntropometricos> datos;
 
     // Nombres de las columnas de la tabla
     String columnas[] = {
-        "ID Indicador", "ID Paciente", "Fecha", 
-        "Peso", "Estatura", 
-        "Circunferencia Brazo", "Circunferencia Cintura", 
+        "ID Indicador", "ID Paciente", "Fecha",
+        "Peso", "Estatura",
+        "Circunferencia Brazo", "Circunferencia Cintura",
         "Circunferencia Cadera", "Circunferencia Muslo"
     };
 
     // Tipos de datos de cada columna
     Class<?> colClasses[] = {
-        Integer.class, Integer.class, Date.class, 
-        Double.class, Double.class, 
-        Double.class, Double.class, 
+        Integer.class, Integer.class, Date.class,
+        Double.class, Double.class,
+        Double.class, Double.class,
         Double.class, Double.class
     };
 
@@ -76,15 +77,33 @@ public class ModeloTablaIndicadoresAntropometricos extends AbstractTableModel {
 
         // Devuelve el valor correspondiente a cada columna
         switch (columnIndex) {
-            case 0 -> { return indicador.getIdIndicador(); }
-            case 1 -> { return indicador.getIdPaciente(); }
-            case 2 -> { return indicador.getFecha(); }
-            case 3 -> { return indicador.getPeso(); }
-            case 4 -> { return indicador.getEstatura(); }
-            case 5 -> { return indicador.getCircunferenciaBrazo(); }
-            case 6 -> { return indicador.getCircunferenciaCintura(); }
-            case 7 -> { return indicador.getCircunferenciaCadera(); }
-            case 8 -> { return indicador.getCircunferenciaMuslo(); }
+            case 0 -> {
+                return indicador.getIdIndicador();
+            }
+            case 1 -> {
+                return indicador.getIdPaciente();
+            }
+            case 2 -> {
+                return indicador.getFecha();
+            }
+            case 3 -> {
+                return indicador.getPeso();
+            }
+            case 4 -> {
+                return indicador.getEstatura();
+            }
+            case 5 -> {
+                return indicador.getCircunferenciaBrazo();
+            }
+            case 6 -> {
+                return indicador.getCircunferenciaCintura();
+            }
+            case 7 -> {
+                return indicador.getCircunferenciaCadera();
+            }
+            case 8 -> {
+                return indicador.getCircunferenciaMuslo();
+            }
         }
         return null;
     }
@@ -99,5 +118,13 @@ public class ModeloTablaIndicadoresAntropometricos extends AbstractTableModel {
     @Override
     public Class<?> getColumnClass(int columnIndex) {
         return colClasses[columnIndex];
+    }
+    // Método para obtener un indicador antropométrico según la fila seleccionada
+
+    public EntidadIndicadoresAntropometricos getIndicadorAntropometrico(int rowIndex) {
+        if (rowIndex >= 0 && rowIndex < datos.size()) {
+            return datos.get(rowIndex);
+        }
+        return null; // Retorna null si el índice no es válido
     }
 }

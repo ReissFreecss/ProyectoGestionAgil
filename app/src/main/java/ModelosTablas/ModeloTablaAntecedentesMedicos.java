@@ -6,21 +6,22 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ModeloTablaAntecedentesMedicos extends AbstractTableModel {
+
     // Lista de antecedentes médicos que serán mostrados en la tabla
     private ArrayList<EntidadAntecedentesMedicos> datos;
 
     // Nombres de las columnas de la tabla
     String columnas[] = {
-        "ID Antecedente", "ID Paciente", "Enfermedad Diagnosticada", 
-        "Medicamentos", "Inicio Medicación", 
-        "Última Desparasitacion", "Última Realización Laboratorios", 
+        "ID Antecedente", "ID Paciente", "Enfermedad Diagnosticada",
+        "Medicamentos", "Inicio Medicación",
+        "Última Desparasitacion", "Última Realización Laboratorios",
         "Alergia/Intolerancia a Alimentos"
     };
 
     // Tipos de datos de cada columna
     Class<?> colClasses[] = {
-        Integer.class, Integer.class, String.class, 
-        String.class, Date.class, 
+        Integer.class, Integer.class, String.class,
+        String.class, Date.class,
         Date.class, Date.class, String.class
     };
 
@@ -67,14 +68,30 @@ public class ModeloTablaAntecedentesMedicos extends AbstractTableModel {
 
         // Devuelve el valor correspondiente a cada columna
         switch (columnIndex) {
-            case 0 -> { return antecedente.getIdAntecedente(); }
-            case 1 -> { return antecedente.getIdPaciente(); }
-            case 2 -> { return antecedente.getEnfermedadDiagnosticada(); }
-            case 3 -> { return antecedente.getMedicamentos(); }
-            case 4 -> { return antecedente.getInicioMedicación(); }
-            case 5 -> { return antecedente.getUltimaDesparasitacion(); }
-            case 6 -> { return antecedente.getUltimaRealizacionLaboratorios(); }
-            case 7 -> { return antecedente.getAlergiaIntoleranciaAlimentos(); }
+            case 0 -> {
+                return antecedente.getIdAntecedente();
+            }
+            case 1 -> {
+                return antecedente.getIdPaciente();
+            }
+            case 2 -> {
+                return antecedente.getEnfermedadDiagnosticada();
+            }
+            case 3 -> {
+                return antecedente.getMedicamentos();
+            }
+            case 4 -> {
+                return antecedente.getInicioMedicación();
+            }
+            case 5 -> {
+                return antecedente.getUltimaDesparasitacion();
+            }
+            case 6 -> {
+                return antecedente.getUltimaRealizacionLaboratorios();
+            }
+            case 7 -> {
+                return antecedente.getAlergiaIntoleranciaAlimentos();
+            }
         }
         return null;
     }
@@ -90,4 +107,13 @@ public class ModeloTablaAntecedentesMedicos extends AbstractTableModel {
     public Class<?> getColumnClass(int columnIndex) {
         return colClasses[columnIndex];
     }
+    // Método para obtener antecedentes médicos según la fila seleccionada
+
+    public EntidadAntecedentesMedicos getAntecedenteMedico(int rowIndex) {
+        if (rowIndex >= 0 && rowIndex < datos.size()) {
+            return datos.get(rowIndex);
+        }
+        return null; // Retorna null si el índice no es válido
+    }
+
 }

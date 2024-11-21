@@ -28,7 +28,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     File archivo;
 
     // Declaración y creación de un objeto Preferences para almacenar y recuperar preferencias del usuario
-    public static Preferences prefs = Preferences.userRoot().node("ProyectoIA");
+    public static Preferences prefs = Preferences.userRoot().node("ProyectoGAP");
 
     public VentanaPrincipal() {
         initComponents(); // Inicializa los componentes de la interfaz gráfica
@@ -83,6 +83,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         vistaDietas1 = new Vistas.VistaDietas();
         jPanel16 = new javax.swing.JPanel();
         vistaSeguimiento1 = new Vistas.VistaSeguimiento();
+        jPanel17 = new javax.swing.JPanel();
+        vistasReportes1 = new Vistas.VistasReportes();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -111,7 +113,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel15.setLayout(new java.awt.BorderLayout());
 
         jTabbedPane2.setBackground(new java.awt.Color(57, 62, 70));
-        jTabbedPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(81, 94, 99), 2));
+        jTabbedPane2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTabbedPane2.setForeground(new java.awt.Color(253, 253, 253));
         jTabbedPane2.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         jTabbedPane2.setFont(new java.awt.Font("Rockwell", 1, 12)); // NOI18N
@@ -180,10 +182,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Dietas", jPanel14);
 
-        jPanel16.setLayout(new java.awt.GridLayout());
+        jPanel16.setLayout(new java.awt.GridLayout(1, 0));
         jPanel16.add(vistaSeguimiento1);
 
         jTabbedPane2.addTab("Seguimiento", jPanel16);
+
+        jPanel17.setLayout(new java.awt.GridLayout());
+        jPanel17.add(vistasReportes1);
+
+        jTabbedPane2.addTab("Reportes", jPanel17);
 
         jPanel15.add(jTabbedPane2, java.awt.BorderLayout.CENTER);
 
@@ -200,7 +207,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 1169, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 1366, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -246,7 +253,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel2))
                     .addComponent(jButton1))
-                .addContainerGap(924, Short.MAX_VALUE))
+                .addContainerGap(1121, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -451,6 +458,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -472,5 +480,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private Vistas.VistaIndicadoresAntropometricos vistaIndicadoresAntropometricos1;
     private Vistas.VistaIndicadoresDieteticos vistaIndicadoresDieteticos1;
     private Vistas.VistaSeguimiento vistaSeguimiento1;
+    private Vistas.VistasReportes vistasReportes1;
     // End of variables declaration//GEN-END:variables
 }

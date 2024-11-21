@@ -13,22 +13,23 @@ import javax.swing.table.AbstractTableModel;
  * @author darkd
  */
 public class ModeloTablaDietas extends AbstractTableModel {
+
     // Lista de dietas que serán mostradas en la tabla
     private ArrayList<EntidadDietas> datos;
 
     // Nombres de las columnas de la tabla
     String columnas[] = {
-        "ID Dieta", "ID Paciente", "Comida", 
-        "Horario", "Porciones", 
-        "Ingredientes", "Suplemento", 
+        "ID Dieta", "ID Paciente", "Comida",
+        "Horario", "Porciones",
+        "Ingredientes", "Suplemento",
         "Dosis Suplemento"
     };
 
     // Tipos de datos de cada columna
     Class<?> colClasses[] = {
-        Integer.class, Integer.class, String.class, 
-        String.class, String.class, 
-        String.class, String.class, 
+        Integer.class, Integer.class, String.class,
+        String.class, String.class,
+        String.class, String.class,
         String.class
     };
 
@@ -75,14 +76,30 @@ public class ModeloTablaDietas extends AbstractTableModel {
 
         // Devuelve el valor correspondiente a cada columna
         switch (columnIndex) {
-            case 0 -> { return dieta.getIdDieta(); }
-            case 1 -> { return dieta.getIdPaciente(); }
-            case 2 -> { return dieta.getComida(); }
-            case 3 -> { return dieta.getHorario(); }
-            case 4 -> { return dieta.getPorciones(); }
-            case 5 -> { return dieta.getIngredientes(); }
-            case 6 -> { return dieta.getSuplemento(); }
-            case 7 -> { return dieta.getDosisSuplemento(); }
+            case 0 -> {
+                return dieta.getIdDieta();
+            }
+            case 1 -> {
+                return dieta.getIdPaciente();
+            }
+            case 2 -> {
+                return dieta.getComida();
+            }
+            case 3 -> {
+                return dieta.getHorario();
+            }
+            case 4 -> {
+                return dieta.getPorciones();
+            }
+            case 5 -> {
+                return dieta.getIngredientes();
+            }
+            case 6 -> {
+                return dieta.getSuplemento();
+            }
+            case 7 -> {
+                return dieta.getDosisSuplemento();
+            }
         }
         return null;
     }
@@ -97,5 +114,13 @@ public class ModeloTablaDietas extends AbstractTableModel {
     @Override
     public Class<?> getColumnClass(int columnIndex) {
         return colClasses[columnIndex];
+    }
+
+    // Método para obtener una dieta según la fila seleccionada
+    public EntidadDietas getDieta(int rowIndex) {
+        if (rowIndex >= 0 && rowIndex < datos.size()) {
+            return datos.get(rowIndex);
+        }
+        return null; // Retorna null si el índice no es válido
     }
 }
