@@ -26,12 +26,11 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.prefs.Preferences;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.filechooser.FileFilter;
+import javax.swing.ListSelectionModel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -177,6 +176,32 @@ public class VistasReportes extends javax.swing.JPanel {
         });
     }
 
+    private List<EntidadDietas> obtenerDietasSeleccionadas() {
+        List<EntidadDietas> dietasSeleccionadas = new ArrayList<>();
+        int[] filasSeleccionadas = TBDatosDietas.getSelectedRows();
+
+        for (int fila : filasSeleccionadas) {
+            EntidadDietas dieta = obtenerDietaDeTabla(fila);
+            if (dieta != null) {
+                dietasSeleccionadas.add(dieta);
+            }
+        }
+        return dietasSeleccionadas;
+    }
+
+    private List<EntidadDatosInterpretacion> datosInterpretacionSeleccionados() {
+        List<EntidadDatosInterpretacion> datosInterpretacionSeleccionados = new ArrayList<>();
+        int[] filasSeleccionadas = TBDatosInterpretacion.getSelectedRows(); // Cambiar a la tabla correspondiente
+
+        for (int fila : filasSeleccionadas) {
+            EntidadDatosInterpretacion interpretacion = obtenerDatosInterpretacionDeTabla(fila); // Cambiar al método correspondiente
+            if (interpretacion != null) {
+                datosInterpretacionSeleccionados.add(interpretacion);
+            }
+        }
+        return datosInterpretacionSeleccionados;
+    }
+
     // Método para buscar plantilla
     private String buscarArchivoPDF() {
         // Obtiene la última ruta guardada desde las preferencias
@@ -247,6 +272,7 @@ public class VistasReportes extends javax.swing.JPanel {
         TBDatosAntropometricos.setModel(TablaDatosAntropometricos);
         TBDatosAntecedentesMedicos.setModel(TablaDatosMedicos);
         TBDatosInterpretacion.setModel(TablaInterpretacion);
+        TBDatosDietas.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
         // Cargar la última ubicación guardada de la plantilla desde las preferencias
         String ultimaRuta = prefs1.get("rutaPlantilla", null);  // Obtiene la ruta guardada de las preferencias
@@ -541,53 +567,44 @@ public class VistasReportes extends javax.swing.JPanel {
         try {
             // Obtener datos seleccionados
             EntidadPaciente pacienteSeleccionado = getObjPaciente();
-            EntidadDietas dietaSeleccionada = getObjDieta();
-            EntidadDatosInterpretacion datosInterpretacionSeleccionados = getObjDatosInterpretacion();
             EntidadIndicadoresAntropometricos indicadoresSeleccionados = getObjDatosAntropometricos();
             EntidadAntecedentesMedicos antecedentesSeleccionados = getObjAntecedentesMedicos();
+            List<EntidadDietas> dietasSeleccionadas = obtenerDietasSeleccionadas();
+            List<EntidadDatosInterpretacion> datosInterpretacionSeleccionados = datosInterpretacionSeleccionados();
 
             // Validar entidades
-            if (pacienteSeleccionado == null || dietaSeleccionada == null
-                    || datosInterpretacionSeleccionados == null || indicadoresSeleccionados == null
-                    || antecedentesSeleccionados == null) {
+            if (pacienteSeleccionado == null || datosInterpretacionSeleccionados == null
+                    || indicadoresSeleccionados == null || antecedentesSeleccionados == null
+                    || dietasSeleccionadas.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Por favor selecciona todas las entidades requeridas antes de generar el reporte.");
                 return;
             }
 
-            // Crear objeto de datos
+            /// Crear objeto de datos
             ReporteData datosReporte = new ReporteData(
                     pacienteSeleccionado.getNombreCompleto(),
                     pacienteSeleccionado.getEdad(),
                     pacienteSeleccionado.getFechaConsulta(),
                     pacienteSeleccionado.getMotivoConsulta(),
-                    datosInterpretacionSeleccionados.getPeso(),
-                    datosInterpretacionSeleccionados.getImc(),
-                    datosInterpretacionSeleccionados.getMasaMuscular(),
-                    datosInterpretacionSeleccionados.getPorcentajeGrasaCorporal(),
+                    pacienteSeleccionado.getDiagnostico(),
                     indicadoresSeleccionados.getEstatura(),
                     indicadoresSeleccionados.getCircunferenciaCintura(),
                     antecedentesSeleccionados.getEnfermedadDiagnosticada(),
                     antecedentesSeleccionados.getAlergiaIntoleranciaAlimentos(),
-                    dietaSeleccionada.getComida(),
-                    dietaSeleccionada.getHorario(),
-                    dietaSeleccionada.getPorciones(),
-                    dietaSeleccionada.getIngredientes(),
-                    dietaSeleccionada.getSuplemento(),
-                    dietaSeleccionada.getDosisSuplemento()
+                    dietasSeleccionadas,
+                    datosInterpretacionSeleccionados
             );
 
-            // Obtener la ruta de la plantilla desde las preferencias
+            // Generar el PDF
             String plantillaPath = prefs1.get("rutaPlantilla", null);
             if (plantillaPath == null) {
                 JOptionPane.showMessageDialog(this, "No se ha seleccionado una plantilla.");
                 return;
             }
 
-            // Seleccionar ubicación para guardar el archivo generado
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setDialogTitle("Guardar reporte");
             fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos PDF", "pdf"));
-
             int userSelection = fileChooser.showSaveDialog(this);
             if (userSelection == JFileChooser.APPROVE_OPTION) {
                 String outputPath = fileChooser.getSelectedFile().getAbsolutePath();
@@ -595,8 +612,7 @@ public class VistasReportes extends javax.swing.JPanel {
                     outputPath += ".pdf";
                 }
 
-                // Generar el PDF
-                PDFGenerator.generarReporte(datosReporte, plantillaPath, outputPath);
+                PDFGenerator.generarReporte(datosReporte, dietasSeleccionadas,datosInterpretacionSeleccionados, plantillaPath, outputPath);
                 JOptionPane.showMessageDialog(this, "Reporte generado con éxito en: " + outputPath);
             }
         } catch (Exception e) {

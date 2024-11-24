@@ -71,13 +71,14 @@ public class ValidadorDatosInterpretacion {
     }
 
     // Validación general para la tabla Datos_Interpretacion
-    public static boolean validarDatosInterpretacion(String peso, String porcentajeGrasaCorporal, String masaMuscular,
+    public static boolean validarDatosInterpretacion(String mes, String peso, String porcentajeGrasaCorporal, String masaMuscular,
                                                      String masaOsea, String imc, String ingestaKilocalorias,
                                                      String edadMetabolica, String porcentajeAguaCorporal, String grasaVisceral,
                                                      String pliegueTricipital, String pliegueBicipital, String pliegueSuprailiaco,
                                                      String pliegueSubescapular, java.util.Date fecha, int idPaciente) {
 
-        return esDecimalValido(peso, "Peso") &&
+        return esNumeroEntero(mes, "Mes") &&
+               esDecimalValido(peso, "Peso") &&
                esDecimalValido(porcentajeGrasaCorporal, "Porcentaje de Grasa Corporal") &&
                esDecimalValido(masaMuscular, "Masa Muscular") &&
                esDecimalValido(masaOsea, "Masa Ósea") &&

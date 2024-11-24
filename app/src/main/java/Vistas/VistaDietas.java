@@ -174,7 +174,7 @@ public class VistaDietas extends javax.swing.JPanel {
         jScrollPane1.setViewportView(TBDatos);
 
         jPanel1.setBackground(new java.awt.Color(82, 97, 107));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Acciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Black", 0, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Acciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Black", 0, 14))); // NOI18N
         jPanel1.setForeground(new java.awt.Color(221, 221, 221));
         jPanel1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
@@ -288,7 +288,7 @@ public class VistaDietas extends javax.swing.JPanel {
         );
 
         jPanel2.setBackground(new java.awt.Color(82, 97, 107));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Black", 0, 14))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Black", 0, 14))); // NOI18N
         jPanel2.setForeground(new java.awt.Color(221, 221, 221));
         jPanel2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
@@ -344,7 +344,7 @@ public class VistaDietas extends javax.swing.JPanel {
         CB_Comida.setBackground(new java.awt.Color(255, 253, 249));
         CB_Comida.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
         CB_Comida.setForeground(new java.awt.Color(27, 38, 44));
-        CB_Comida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Desayuno", "Almuerzo", "Comida", "Colacion 1", "Colacion 2" }));
+        CB_Comida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Desayuno", "Comida", "Cena", "Colacion 1", "Colacion 2" }));
 
         JTA_Ingredientes.setBackground(new java.awt.Color(255, 253, 249));
         JTA_Ingredientes.setColumns(20);

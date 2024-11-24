@@ -20,8 +20,8 @@ public class ModeloTablaDatosInterpretacion extends AbstractTableModel {
 
     // Nombres de las columnas de la tabla
     String columnas[] = {
-        "ID Datos Interpretación", "ID Paciente", "Fecha",
-        "Peso", "Porcentaje Grasa Corporal",
+        "ID Datos Interpretación", "ID Paciente", "Fecha", "Mes",
+        "Peso", "Cintura","Porcentaje Grasa Corporal",
         "Masa Muscular", "Masa Ósea",
         "IMC", "Ingesta Kilocalorías",
         "Edad Metabólica", "Porcentaje Agua Corporal",
@@ -32,9 +32,9 @@ public class ModeloTablaDatosInterpretacion extends AbstractTableModel {
 
     // Tipos de datos de cada columna
     Class<?> colClasses[] = {
-        Integer.class, Integer.class, Date.class,
+        Integer.class, Integer.class, Date.class, Integer.class,
         Double.class, Double.class,
-        Double.class, Double.class,
+        Double.class,Double.class, Double.class,
         Double.class, Double.class,
         Integer.class, Double.class,
         Double.class, Double.class,
@@ -95,42 +95,48 @@ public class ModeloTablaDatosInterpretacion extends AbstractTableModel {
                 return interpretacion.getFecha();
             }
             case 3 -> {
-                return interpretacion.getPeso();
+                return interpretacion.getMes();
             }
             case 4 -> {
-                return interpretacion.getPorcentajeGrasaCorporal();
+                return interpretacion.getPeso();
             }
             case 5 -> {
-                return interpretacion.getMasaMuscular();
+                return interpretacion.getCintura();
             }
             case 6 -> {
-                return interpretacion.getMasaOsea();
+                return interpretacion.getPorcentajeGrasaCorporal();
             }
             case 7 -> {
-                return interpretacion.getImc();
+                return interpretacion.getMasaMuscular();
             }
             case 8 -> {
-                return interpretacion.getIngestaKilocalorias();
+                return interpretacion.getMasaOsea();
             }
             case 9 -> {
-                return interpretacion.getEdadMetabolica();
+                return interpretacion.getImc();
             }
             case 10 -> {
-                return interpretacion.getPorcentajeAguaCorporal();
+                return interpretacion.getIngestaKilocalorias();
             }
             case 11 -> {
-                return interpretacion.getGrasaVisceral();
+                return interpretacion.getEdadMetabolica();
             }
             case 12 -> {
-                return interpretacion.getPliegueTricipital();
+                return interpretacion.getPorcentajeAguaCorporal();
             }
             case 13 -> {
-                return interpretacion.getPliegueBicipital();
+                return interpretacion.getGrasaVisceral();
             }
             case 14 -> {
-                return interpretacion.getPliegueSuprailiaco();
+                return interpretacion.getPliegueTricipital();
             }
             case 15 -> {
+                return interpretacion.getPliegueBicipital();
+            }
+            case 16 -> {
+                return interpretacion.getPliegueSuprailiaco();
+            }
+            case 17 -> {
                 return interpretacion.getPliegueSubescapular();
             }
         }

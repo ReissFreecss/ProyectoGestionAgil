@@ -29,7 +29,9 @@ public class ControladorDatosInterpretacion {
                         rs.getInt("id_datos_interpretacion"),
                         rs.getInt("id_paciente"),
                         rs.getDate("fecha"),
+                        rs.getInt("mes"),
                         rs.getDouble("peso"),
+                        rs.getDouble("cintura"),
                         rs.getDouble("porcentaje_grasa_corporal"),
                         rs.getDouble("masa_muscular"),
                         rs.getDouble("masa_osea"),
@@ -55,24 +57,26 @@ public class ControladorDatosInterpretacion {
             throw new IllegalArgumentException("Error: Conexion es null");
         }
 
-        String sqlAlta = "INSERT INTO Datos_Interpretacion (id_paciente, fecha, peso, porcentaje_grasa_corporal, masa_muscular, masa_osea, imc, ingesta_kilocalorias, edad_metabolica, porcentaje_agua_corporal, grasa_visceral, pliegue_tricipital, pliegue_bicipital, pliegue_suprailiaco, pliegue_subescapular) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlAlta = "INSERT INTO Datos_Interpretacion (id_paciente, fecha, mes, peso, cintura, porcentaje_grasa_corporal, masa_muscular, masa_osea, imc, ingesta_kilocalorias, edad_metabolica, porcentaje_agua_corporal, grasa_visceral, pliegue_tricipital, pliegue_bicipital, pliegue_suprailiaco, pliegue_subescapular) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement ps = ControladorBDSQL.conexion.prepareStatement(sqlAlta)) {
             ps.setInt(1, obj.getIdPaciente());
             ps.setDate(2, (Date) obj.getFecha());
-            ps.setDouble(3, obj.getPeso());
-            ps.setDouble(4, obj.getPorcentajeGrasaCorporal());
-            ps.setDouble(5, obj.getMasaMuscular());
-            ps.setDouble(6, obj.getMasaOsea());
-            ps.setDouble(7, obj.getImc());
-            ps.setDouble(8, obj.getIngestaKilocalorias());
-            ps.setInt(9, obj.getEdadMetabolica());
-            ps.setDouble(10, obj.getPorcentajeAguaCorporal());
-            ps.setDouble(11, obj.getGrasaVisceral());
-            ps.setDouble(12, obj.getPliegueTricipital());
-            ps.setDouble(13, obj.getPliegueBicipital());
-            ps.setDouble(14, obj.getPliegueSuprailiaco());
-            ps.setDouble(15, obj.getPliegueSubescapular());
+            ps.setInt(3, obj.getMes());
+            ps.setDouble(4, obj.getPeso());
+            ps.setDouble(5, obj.getCintura());
+            ps.setDouble(6, obj.getPorcentajeGrasaCorporal());
+            ps.setDouble(7, obj.getMasaMuscular());
+            ps.setDouble(8, obj.getMasaOsea());
+            ps.setDouble(9, obj.getImc());
+            ps.setDouble(10, obj.getIngestaKilocalorias());
+            ps.setInt(11, obj.getEdadMetabolica());
+            ps.setDouble(12, obj.getPorcentajeAguaCorporal());
+            ps.setDouble(13, obj.getGrasaVisceral());
+            ps.setDouble(14, obj.getPliegueTricipital());
+            ps.setDouble(15, obj.getPliegueBicipital());
+            ps.setDouble(16, obj.getPliegueSuprailiaco());
+            ps.setDouble(17, obj.getPliegueSubescapular());
 
             ps.executeUpdate();
         }
@@ -84,25 +88,27 @@ public class ControladorDatosInterpretacion {
             throw new IllegalArgumentException("Error: Conexion es null");
         }
 
-        String sqlActualizar = "UPDATE Datos_Interpretacion SET id_paciente = ?, fecha = ?, peso = ?, porcentaje_grasa_corporal = ?, masa_muscular = ?, masa_osea = ?, imc = ?, ingesta_kilocalorias = ?, edad_metabolica = ?, porcentaje_agua_corporal = ?, grasa_visceral = ?, pliegue_tricipital = ?, pliegue_bicipital = ?, pliegue_suprailiaco = ?, pliegue_subescapular = ? WHERE id_datos_interpretacion = ?";
+        String sqlActualizar = "UPDATE Datos_Interpretacion SET id_paciente = ?, fecha = ?, mes = ?, peso = ?, cintura = ?, porcentaje_grasa_corporal = ?, masa_muscular = ?, masa_osea = ?, imc = ?, ingesta_kilocalorias = ?, edad_metabolica = ?, porcentaje_agua_corporal = ?, grasa_visceral = ?, pliegue_tricipital = ?, pliegue_bicipital = ?, pliegue_suprailiaco = ?, pliegue_subescapular = ? WHERE id_datos_interpretacion = ?";
 
         try (PreparedStatement ps = ControladorBDSQL.conexion.prepareStatement(sqlActualizar)) {
             ps.setInt(1, obj.getIdPaciente());
             ps.setDate(2, (Date) obj.getFecha());
-            ps.setDouble(3, obj.getPeso());
-            ps.setDouble(4, obj.getPorcentajeGrasaCorporal());
-            ps.setDouble(5, obj.getMasaMuscular());
-            ps.setDouble(6, obj.getMasaOsea());
-            ps.setDouble(7, obj.getImc());
-            ps.setDouble(8, obj.getIngestaKilocalorias());
-            ps.setInt(9, obj.getEdadMetabolica());
-            ps.setDouble(10, obj.getPorcentajeAguaCorporal());
-            ps.setDouble(11, obj.getGrasaVisceral());
-            ps.setDouble(12, obj.getPliegueTricipital());
-            ps.setDouble(13, obj.getPliegueBicipital());
-            ps.setDouble(14, obj.getPliegueSuprailiaco());
-            ps.setDouble(15, obj.getPliegueSubescapular());
-            ps.setInt(16, obj.getIdDatosInterpretacion());
+            ps.setInt(3, obj.getMes());
+            ps.setDouble(4, obj.getPeso());
+            ps.setDouble(5, obj.getCintura());
+            ps.setDouble(6, obj.getPorcentajeGrasaCorporal());
+            ps.setDouble(7, obj.getMasaMuscular());
+            ps.setDouble(8, obj.getMasaOsea());
+            ps.setDouble(9, obj.getImc());
+            ps.setDouble(10, obj.getIngestaKilocalorias());
+            ps.setInt(11, obj.getEdadMetabolica());
+            ps.setDouble(12, obj.getPorcentajeAguaCorporal());
+            ps.setDouble(13, obj.getGrasaVisceral());
+            ps.setDouble(14, obj.getPliegueTricipital());
+            ps.setDouble(15, obj.getPliegueBicipital());
+            ps.setDouble(16, obj.getPliegueSuprailiaco());
+            ps.setDouble(17, obj.getPliegueSubescapular());
+            ps.setInt(18, obj.getIdDatosInterpretacion());
 
             ps.executeUpdate();
         }
@@ -142,7 +148,9 @@ public class ControladorDatosInterpretacion {
                         rs.getInt("id_datos_interpretacion"),
                         rs.getInt("id_paciente"),
                         rs.getDate("fecha"),
+                        rs.getInt("mes"),
                         rs.getDouble("peso"),
+                        rs.getDouble("cintura"),
                         rs.getDouble("porcentaje_grasa_corporal"),
                         rs.getDouble("masa_muscular"),
                         rs.getDouble("masa_osea"),
@@ -182,7 +190,9 @@ public class ControladorDatosInterpretacion {
                         rs.getInt("id_datos_interpretacion"),
                         rs.getInt("id_paciente"),
                         rs.getDate("fecha"),
+                        rs.getInt("mes"),
                         rs.getDouble("peso"),
+                        rs.getDouble("cintura"),
                         rs.getDouble("porcentaje_grasa_corporal"),
                         rs.getDouble("masa_muscular"),
                         rs.getDouble("masa_osea"),

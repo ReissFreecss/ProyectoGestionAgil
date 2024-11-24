@@ -1,7 +1,11 @@
 package Reportes;
+
+import Entidades.EntidadDietas;
+import Entidades.EntidadDatosInterpretacion;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 public class ReporteData {
 
     // Tabla paciente:
@@ -9,51 +13,33 @@ public class ReporteData {
     private Integer edad;
     private java.sql.Date fechaConsulta;
     private String motivoConsulta;
-    
-    // Tabla datos interpretacion:
-    private double peso;
-    private double imc;
-    private double masaMuscular;
-    private double porcentajeGrasaCorporal;
-    
+    private String diagnostico;
+
     // Tabla datos antropometricos:
     private double estatura;
     private double circunferenciaCintura;
-    
+
     // Tabla antecedentes medicos:
     private String enfermedadDiagnosticada;
     private String alergiaIntoleranciaAlimentos;
-    
-    //Tabla dietas:
-    private String comida;
-    private String horario;            
-    private String porciones;          
-    private String ingredientes;       
-    private String suplemento;         
-    private String dosisSuplemento;
 
-    public ReporteData(String nombreCompleto, Integer edad, java.sql.Date fechaConsulta, String motivoConsulta, double peso, double imc, double masaMuscular, double porcentajeGrasaCorporal, double estatura, double circunferenciaCintura, String enfermedadDiagnosticada, String alergiaIntoleranciaAlimentos, String comida, String horario, String porciones, String ingredientes, String suplemento, String dosisSuplemento) {
+    //Tabla dietas con alimentos:
+    private List<EntidadDietas> dietas;
+    private List<EntidadDatosInterpretacion> datosInterpretacion;
+
+    public ReporteData(String nombreCompleto, Integer edad, java.sql.Date fechaConsulta, String motivoConsulta, String diagnostico, double estatura, double circunferenciaCintura, String enfermedadDiagnosticada, String alergiaIntoleranciaAlimentos, List<EntidadDietas> dietas, List<EntidadDatosInterpretacion> datosInterpretacion) {
         this.nombreCompleto = nombreCompleto;
         this.edad = edad;
         this.fechaConsulta = fechaConsulta;
         this.motivoConsulta = motivoConsulta;
-        this.peso = peso;
-        this.imc = imc;
-        this.masaMuscular = masaMuscular;
-        this.porcentajeGrasaCorporal = porcentajeGrasaCorporal;
+        this.diagnostico = diagnostico;
         this.estatura = estatura;
         this.circunferenciaCintura = circunferenciaCintura;
         this.enfermedadDiagnosticada = enfermedadDiagnosticada;
         this.alergiaIntoleranciaAlimentos = alergiaIntoleranciaAlimentos;
-        this.comida = comida;
-        this.horario = horario;
-        this.porciones = porciones;
-        this.ingredientes = ingredientes;
-        this.suplemento = suplemento;
-        this.dosisSuplemento = dosisSuplemento;
+        this.dietas = dietas;
+        this.datosInterpretacion = datosInterpretacion;
     }
-    
-    
 
     public String getNombreCompleto() {
         return nombreCompleto;
@@ -87,36 +73,12 @@ public class ReporteData {
         this.motivoConsulta = motivoConsulta;
     }
 
-    public double getPeso() {
-        return peso;
+    public String getDiagnostico() {
+        return diagnostico;
     }
 
-    public void setPeso(double peso) {
-        this.peso = peso;
-    }
-
-    public double getImc() {
-        return imc;
-    }
-
-    public void setImc(double imc) {
-        this.imc = imc;
-    }
-
-    public double getMasaMuscular() {
-        return masaMuscular;
-    }
-
-    public void setMasaMuscular(double masaMuscular) {
-        this.masaMuscular = masaMuscular;
-    }
-
-    public double getPorcentajeGrasaCorporal() {
-        return porcentajeGrasaCorporal;
-    }
-
-    public void setPorcentajeGrasaCorporal(double porcentajeGrasaCorporal) {
-        this.porcentajeGrasaCorporal = porcentajeGrasaCorporal;
+    public void setDiagnostico(String diagnostico) {
+        this.diagnostico = diagnostico;
     }
 
     public double getEstatura() {
@@ -151,53 +113,21 @@ public class ReporteData {
         this.alergiaIntoleranciaAlimentos = alergiaIntoleranciaAlimentos;
     }
 
-    public String getComida() {
-        return comida;
+    public List<EntidadDietas> getDietas() {
+        return dietas;
     }
 
-    public void setComida(String comida) {
-        this.comida = comida;
+    public void setDietas(List<EntidadDietas> dietas) {
+        this.dietas = dietas;
     }
 
-    public String getHorario() {
-        return horario;
+    public List<EntidadDatosInterpretacion> getDatosInterpretacion() {
+        return datosInterpretacion;
     }
 
-    public void setHorario(String horario) {
-        this.horario = horario;
+    public void setDatosInterpretacion(List<EntidadDatosInterpretacion> datosInterpretacion) {
+        this.datosInterpretacion = datosInterpretacion;
     }
 
-    public String getPorciones() {
-        return porciones;
-    }
-
-    public void setPorciones(String porciones) {
-        this.porciones = porciones;
-    }
-
-    public String getIngredientes() {
-        return ingredientes;
-    }
-
-    public void setIngredientes(String ingredientes) {
-        this.ingredientes = ingredientes;
-    }
-
-    public String getSuplemento() {
-        return suplemento;
-    }
-
-    public void setSuplemento(String suplemento) {
-        this.suplemento = suplemento;
-    }
-
-    public String getDosisSuplemento() {
-        return dosisSuplemento;
-    }
-
-    public void setDosisSuplemento(String dosisSuplemento) {
-        this.dosisSuplemento = dosisSuplemento;
-    }
-        
-
+    
 }

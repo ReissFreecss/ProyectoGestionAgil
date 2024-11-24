@@ -11,7 +11,9 @@ public class EntidadDatosInterpretacion {
     private Integer idDatosInterpretacion;  // ID de los datos de interpretación
     private Integer idPaciente;             // ID del paciente
     private Date fecha;                     // Fecha de los datos
+    private Integer mes;
     private double peso;                    // Peso del paciente
+    private double cintura;
     private double porcentajeGrasaCorporal; // Porcentaje de grasa corporal
     private double masaMuscular;            // Masa muscular
     private double masaOsea;                // Masa ósea
@@ -25,7 +27,7 @@ public class EntidadDatosInterpretacion {
     private double pliegueSuprailiaco;      // Pliegue suprailiaco
     private double pliegueSubescapular;     // Pliegue subescapular
 
-    public EntidadDatosInterpretacion(Integer idDatosInterpretacion, Integer idPaciente, Date fecha, double peso,
+    public EntidadDatosInterpretacion(Integer idDatosInterpretacion, Integer idPaciente, Date fecha, Integer mes,double peso, double cintura,
                                       double porcentajeGrasaCorporal, double masaMuscular, double masaOsea, double imc,
                                       double ingestaKilocalorias, Integer edadMetabolica, double porcentajeAguaCorporal,
                                       double grasaVisceral, double pliegueTricipital, double pliegueBicipital,
@@ -33,7 +35,9 @@ public class EntidadDatosInterpretacion {
         this.idDatosInterpretacion = idDatosInterpretacion;
         this.idPaciente = idPaciente;
         this.fecha = fecha;
+        this.mes = mes;
         this.peso = peso;
+        this.cintura = cintura;
         this.porcentajeGrasaCorporal = porcentajeGrasaCorporal;
         this.masaMuscular = masaMuscular;
         this.masaOsea = masaOsea;
@@ -73,12 +77,30 @@ public class EntidadDatosInterpretacion {
         this.fecha = fecha;
     }
 
+    public Integer getMes() {
+        return mes;
+    }
+
+    public void setMes(Integer mes) {
+        this.mes = mes;
+    }
+    
+    
+
     public double getPeso() {
         return peso;
     }
 
     public void setPeso(double peso) {
         this.peso = peso;
+    }
+
+    public double getCintura() {
+        return cintura;
+    }
+
+    public void setCintura(double cintura) {
+        this.cintura = cintura;
     }
 
     public double getPorcentajeGrasaCorporal() {

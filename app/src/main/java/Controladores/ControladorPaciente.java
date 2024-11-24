@@ -42,6 +42,7 @@ public class ControladorPaciente {
                         rs.getString("sexo"),
                         rs.getString("ocupacion"),
                         rs.getString("motivo_consulta"),
+                        rs.getString("diagnostico"),
                         rs.getDate("fecha_consulta"),
                         rs.getString("telefono")
                 );
@@ -58,7 +59,7 @@ public class ControladorPaciente {
         }
 
         // Consulta SQL para insertar un nuevo paciente (sin incluir el idPaciente, que se genera automáticamente)
-        String sqlAlta = "INSERT INTO pacientes (nombre_completo, edad, sexo, ocupacion, motivo_consulta, fecha_consulta, telefono) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sqlAlta = "INSERT INTO pacientes (nombre_completo, edad, sexo, ocupacion, motivo_consulta, diagnostico, fecha_consulta, telefono) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement ps = ControladorBDSQL.conexion.prepareStatement(sqlAlta)) {
             // No incluimos el idPaciente porque es autogenerado
@@ -67,8 +68,9 @@ public class ControladorPaciente {
             ps.setString(3, obj.getSexo());
             ps.setString(4, obj.getOcupacion());
             ps.setString(5, obj.getMotivoConsulta());
-            ps.setDate(6, new java.sql.Date(obj.getFechaConsulta().getTime())); // Conversión de java.util.Date a java.sql.Date
-            ps.setString(7, obj.getTelefono());
+            ps.setString(6, obj.getDiagnostico());
+            ps.setDate(7, new java.sql.Date(obj.getFechaConsulta().getTime())); // Conversión de java.util.Date a java.sql.Date
+            ps.setString(8, obj.getTelefono());
 
             ps.executeUpdate();
         }
@@ -81,7 +83,7 @@ public class ControladorPaciente {
         }
 
         // Consulta SQL para actualizar un Caracteristica
-        String sqlActualizar = "UPDATE pacientes SET nombre_completo = ?, edad = ?, sexo = ?, ocupacion = ?, motivo_consulta = ?, fecha_consulta = ?, telefono = ? WHERE id_paciente = ?";
+        String sqlActualizar = "UPDATE pacientes SET nombre_completo = ?, edad = ?, sexo = ?, ocupacion = ?, motivo_consulta = ?, diagnostico = ?, fecha_consulta = ?, telefono = ? WHERE id_paciente = ?";
 
         try (PreparedStatement ps = ControladorBDSQL.conexion.prepareStatement(sqlActualizar)) {
             ps.setString(1, paciente.getNombreCompleto());
@@ -89,9 +91,10 @@ public class ControladorPaciente {
             ps.setString(3, paciente.getSexo());
             ps.setString(4, paciente.getOcupacion());
             ps.setString(5, paciente.getMotivoConsulta());
-            ps.setDate(6, new java.sql.Date(paciente.getFechaConsulta().getTime()));
-            ps.setString(7, paciente.getTelefono());
-            ps.setInt(8, paciente.getIdPaciente());
+            ps.setString(6, paciente.getDiagnostico());
+            ps.setDate(7, new java.sql.Date(paciente.getFechaConsulta().getTime()));
+            ps.setString(8, paciente.getTelefono());
+            ps.setInt(9, paciente.getIdPaciente());
             ps.executeUpdate();
         }
     }
@@ -139,6 +142,7 @@ public class ControladorPaciente {
                         rs.getString("sexo"),
                         rs.getString("ocupacion"),
                         rs.getString("motivo_consulta"),
+                        rs.getString("diagnostico"),
                         rs.getDate("fecha_consulta"),
                         rs.getString("telefono")
                 );
@@ -174,6 +178,7 @@ public class ControladorPaciente {
                         rs.getString("sexo"),
                         rs.getString("ocupacion"),
                         rs.getString("motivo_consulta"),
+                        rs.getString("diagnostico"),
                         rs.getDate("fecha_consulta"),
                         rs.getString("telefono")
                 );

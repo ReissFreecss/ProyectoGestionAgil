@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS "Pacientes" (
 	"sexo"	TEXT,
 	"ocupacion"	TEXT,
 	"motivo_consulta"	TEXT,
+        "diagnostico" TEXT,
 	"fecha_consulta"	DATE,
 	"telefono"	TEXT,
 	PRIMARY KEY("id_paciente" AUTOINCREMENT)
@@ -136,7 +137,9 @@ CREATE TABLE IF NOT EXISTS "Datos_Interpretacion" (
 	"id_datos_interpretacion"	INTEGER,
 	"id_paciente"	INTEGER,
 	"fecha"	DATE DEFAULT NULL,
+        "mes" INTEGER NOT NULL,
 	"peso"	DECIMAL(5, 2),
+        "cintura" DECIMAL(5, 2),
 	"porcentaje_grasa_corporal"	DECIMAL(5, 2),
 	"masa_muscular"	DECIMAL(5, 2),
 	"masa_osea"	DECIMAL(5, 2),

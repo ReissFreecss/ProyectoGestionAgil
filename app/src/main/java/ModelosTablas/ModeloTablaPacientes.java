@@ -11,10 +11,10 @@ public class ModeloTablaPacientes extends AbstractTableModel {
     private ArrayList<EntidadPaciente> datos;
 
     // Nombres de las columnas de la tabla
-    String columnas[] = {"ID", "Nombre Completo", "Edad", "Sexo", "Ocupación", "Motivo Consulta", "Fecha Consulta", "Teléfono"};
+    String columnas[] = {"ID", "Nombre Completo", "Edad", "Sexo", "Ocupación", "Motivo Consulta", "Diagnostico", "Fecha Consulta", "Teléfono"};
 
     // Tipos de datos de cada columna
-    Class<?> colClasses[] = {Integer.class, String.class, Integer.class, String.class, String.class, String.class, Date.class, String.class};
+    Class<?> colClasses[] = {Integer.class, String.class, Integer.class, String.class, String.class, String.class, String.class, Date.class, String.class};
 
     // Método para obtener los datos, inicializa la lista si es null
     public ArrayList<EntidadPaciente> getDatos() {
@@ -78,9 +78,12 @@ public class ModeloTablaPacientes extends AbstractTableModel {
                 return paciente.getMotivoConsulta();
             }
             case 6 -> {
-                return paciente.getFechaConsulta();
+                return paciente.getDiagnostico();
             }
             case 7 -> {
+                return paciente.getFechaConsulta();
+            }
+            case 8 -> {
                 return paciente.getTelefono();
             }
         }

@@ -44,7 +44,9 @@ public class VistaDatosInterpretacion extends javax.swing.JPanel {
             JTA_IDPaciente.setText(String.valueOf(this.ObjSeleccionado.getIdPaciente())); // Mostrar el ID del paciente
 
             // Actualizar las medidas en los spinners
+            JSP_Mes.setValue(this.ObjSeleccionado.getMes());
             JSP_Peso.setValue(this.ObjSeleccionado.getPeso()); // Peso
+            JSP_Cintura.setValue(this.ObjSeleccionado.getCintura());
             JSP_PorcentajeGrasa.setValue(this.ObjSeleccionado.getPorcentajeGrasaCorporal()); // Porcentaje de grasa
             JSP_MasaMuscular.setValue(this.ObjSeleccionado.getMasaMuscular()); // Masa muscular
             JSP_MasaOsea.setValue(this.ObjSeleccionado.getMasaOsea()); // Masa ósea
@@ -70,7 +72,9 @@ public class VistaDatosInterpretacion extends javax.swing.JPanel {
     private void limpiarFormulario() {
         JTA_IDDatosInterpretacion.setText(""); // Limpiar el campo ID de interpretación
         JTA_IDPaciente.setText(""); // Limpiar el campo ID de paciente
+        JSP_Mes.setValue(0.0); // Limpiar el mes
         JSP_Peso.setValue(0.0); // Limpiar el peso
+        JSP_Cintura.setValue(0.0);
         JSP_PorcentajeGrasa.setValue(0.0); // Limpiar el porcentaje de grasa
         JSP_MasaMuscular.setValue(0.0); // Limpiar la masa muscular
         JSP_MasaOsea.setValue(0.0); // Limpiar la masa ósea
@@ -186,6 +190,10 @@ public class VistaDatosInterpretacion extends javax.swing.JPanel {
         JSP_Suprailiaco = new javax.swing.JSpinner();
         JSP_Subescapular = new javax.swing.JSpinner();
         jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        JSP_Mes = new javax.swing.JSpinner();
+        jLabel18 = new javax.swing.JLabel();
+        JSP_Cintura = new javax.swing.JSpinner();
 
         setBackground(new java.awt.Color(58, 71, 80));
         setForeground(new java.awt.Color(27, 38, 44));
@@ -210,7 +218,7 @@ public class VistaDatosInterpretacion extends javax.swing.JPanel {
         jScrollPane1.setViewportView(TBDatos);
 
         jPanel1.setBackground(new java.awt.Color(82, 97, 107));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Acciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Black", 0, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Acciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Black", 0, 14))); // NOI18N
         jPanel1.setForeground(new java.awt.Color(221, 221, 221));
 
         btnRefrescar_.setBackground(new java.awt.Color(73, 84, 100));
@@ -323,7 +331,7 @@ public class VistaDatosInterpretacion extends javax.swing.JPanel {
         );
 
         jPanel2.setBackground(new java.awt.Color(82, 97, 107));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Black", 0, 14))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Black", 0, 14))); // NOI18N
         jPanel2.setForeground(new java.awt.Color(221, 221, 221));
 
         jLabel1.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
@@ -442,6 +450,20 @@ public class VistaDatosInterpretacion extends javax.swing.JPanel {
         jLabel16.setForeground(new java.awt.Color(221, 221, 221));
         jLabel16.setText("Subescapular:");
 
+        jLabel17.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(221, 221, 221));
+        jLabel17.setText("Mes");
+
+        JSP_Mes.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        JSP_Mes.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
+        jLabel18.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(221, 221, 221));
+        jLabel18.setText("Cintura:");
+
+        JSP_Cintura.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        JSP_Cintura.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -449,41 +471,7 @@ public class VistaDatosInterpretacion extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(128, 128, 128)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(JTA_IDPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JTA_IDDatosInterpretacion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(JD_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JSP_Tricipital, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JSP_Bicipital, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JSP_Suprailiaco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JSP_Subescapular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator1)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -513,16 +501,53 @@ public class VistaDatosInterpretacion extends javax.swing.JPanel {
                                                 .addGap(18, 18, 18)
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jLabel11)
-                                                    .addComponent(jLabel7)))))
-                                    .addComponent(jLabel10))
-                                .addGap(18, 18, Short.MAX_VALUE)
+                                                    .addComponent(jLabel7)
+                                                    .addComponent(jLabel17)))))
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel12))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(JSP_IngestaKilocalorias, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(JSP_MasaOsea, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(JSP_PorcentajeGrasa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(JSP_AguaCorporal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())))
+                                    .addComponent(JSP_AguaCorporal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(JSP_Mes, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 135, Short.MAX_VALUE))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(128, 128, 128)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(JTA_IDPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(JTA_IDDatosInterpretacion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(JD_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JSP_Tricipital, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JSP_Bicipital, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel15)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JSP_Suprailiaco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JSP_Subescapular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JSP_Cintura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -564,7 +589,9 @@ public class VistaDatosInterpretacion extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(JSP_GrasaViceral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JSP_GrasaViceral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17)
+                    .addComponent(JSP_Mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
@@ -576,8 +603,11 @@ public class VistaDatosInterpretacion extends javax.swing.JPanel {
                     .addComponent(jLabel15)
                     .addComponent(JSP_Suprailiaco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16)
-                    .addComponent(JSP_Subescapular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(JSP_Subescapular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel18)
+                        .addComponent(JSP_Cintura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -606,6 +636,7 @@ public class VistaDatosInterpretacion extends javax.swing.JPanel {
     private void btnAgregar_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar_ActionPerformed
         // Verifica si los campos obligatorios están llenos antes de proceder
         if (!ValidadorDatosInterpretacion.campoNoVacio(JTA_IDPaciente.getText(), "ID Paciente")
+                || !ValidadorDatosInterpretacion.campoNoVacio(JSP_Mes.getValue().toString(), "Mes")
                 || !ValidadorDatosInterpretacion.campoNoVacio(JSP_Peso.getValue().toString(), "Peso")
                 || JD_Fecha.getDate() == null) {
             return; // Sale del método si alguna validación falla
@@ -646,7 +677,9 @@ public class VistaDatosInterpretacion extends javax.swing.JPanel {
                 null, // El ID será generado automáticamente
                 idPaciente,
                 new java.sql.Date(JD_Fecha.getDate().getTime()), // Fecha
+                Integer.parseInt(JSP_Mes.getValue().toString()), // Mes
                 Double.parseDouble(JSP_Peso.getValue().toString()), // Peso
+                Double.parseDouble(JSP_Cintura.getValue().toString()),
                 Double.parseDouble(JSP_PorcentajeGrasa.getValue().toString()), // Porcentaje de Grasa Corporal
                 Double.parseDouble(JSP_MasaMuscular.getValue().toString()), // Masa Muscular
                 Double.parseDouble(JSP_MasaOsea.getValue().toString()), // Masa Ósea
@@ -787,7 +820,9 @@ public class VistaDatosInterpretacion extends javax.swing.JPanel {
         seleccionado.setFecha(new java.sql.Date(JD_Fecha.getDate().getTime()));
 
         // Obtener y asignar los valores desde los JSpinners para las mediciones de interpretación
-        seleccionado.setPeso((Double) JSP_Peso.getValue()); // Asignar el peso desde el JSpinner
+        seleccionado.setMes((Integer) JSP_Mes.getValue());
+        seleccionado.setPeso((Double) JSP_Peso.getValue());
+        seleccionado.setCintura((Double) JSP_Cintura.getValue());// Asignar el peso desde el JSpinner
         seleccionado.setPorcentajeGrasaCorporal((Double) JSP_PorcentajeGrasa.getValue()); // Asignar porcentaje de grasa corporal
         seleccionado.setMasaMuscular((Double) JSP_MasaMuscular.getValue()); // Asignar masa muscular
         seleccionado.setMasaOsea((Double) JSP_MasaOsea.getValue()); // Asignar masa ósea
@@ -921,12 +956,14 @@ public class VistaDatosInterpretacion extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser JD_Fecha;
     private javax.swing.JSpinner JSP_AguaCorporal;
     private javax.swing.JSpinner JSP_Bicipital;
+    private javax.swing.JSpinner JSP_Cintura;
     private javax.swing.JSpinner JSP_EdadMetabolica;
     private javax.swing.JSpinner JSP_GrasaViceral;
     private javax.swing.JSpinner JSP_IMC;
     private javax.swing.JSpinner JSP_IngestaKilocalorias;
     private javax.swing.JSpinner JSP_MasaMuscular;
     private javax.swing.JSpinner JSP_MasaOsea;
+    private javax.swing.JSpinner JSP_Mes;
     private javax.swing.JSpinner JSP_Peso;
     private javax.swing.JSpinner JSP_PorcentajeGrasa;
     private javax.swing.JSpinner JSP_Subescapular;
@@ -951,6 +988,8 @@ public class VistaDatosInterpretacion extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

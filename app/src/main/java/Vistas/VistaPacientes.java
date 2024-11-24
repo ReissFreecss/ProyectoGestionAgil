@@ -47,6 +47,7 @@ public class VistaPacientes extends javax.swing.JPanel {
             JCB_Genero.setSelectedItem(this.ObjSeleccionado.getSexo()); // Género (suponiendo que el JComboBox tiene opciones como "Masculino", "Femenino", etc.)
             JTA_Ocupacion.setText(this.ObjSeleccionado.getOcupacion()); // Ocupación
             JTA_MotivoConsulta.setText(this.ObjSeleccionado.getMotivoConsulta()); // Motivo de la consulta
+            JTA_Diagnostico.setText(this.ObjSeleccionado.getDiagnostico());
             JTA_Telefono.setText(this.ObjSeleccionado.getTelefono()); // Teléfono
         } // Si no hay objeto seleccionado, limpiar los campos de texto
         else {
@@ -62,6 +63,7 @@ public class VistaPacientes extends javax.swing.JPanel {
         JCB_Genero.setSelectedIndex(-1); // Desseleccionar género
         JTA_Ocupacion.setText(""); // Limpiar el campo ocupación
         JTA_MotivoConsulta.setText(""); // Limpiar el campo motivo de consulta
+        JTA_Diagnostico.setText("");
         JTA_Telefono.setText(""); // Limpiar el campo teléfono
     }
 
@@ -147,6 +149,8 @@ public class VistaPacientes extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         JTA_Telefono = new javax.swing.JTextField();
         jD_Fecha = new com.toedter.calendar.JDateChooser();
+        jLabel9 = new javax.swing.JLabel();
+        JTA_Diagnostico = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(58, 71, 80));
         setForeground(new java.awt.Color(27, 38, 44));
@@ -174,7 +178,7 @@ public class VistaPacientes extends javax.swing.JPanel {
         jScrollPane1.setViewportView(TBDatos);
 
         jPanel1.setBackground(new java.awt.Color(82, 97, 107));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Acciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Black", 0, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Acciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Black", 0, 14))); // NOI18N
         jPanel1.setForeground(new java.awt.Color(221, 221, 221));
         jPanel1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
@@ -288,7 +292,7 @@ public class VistaPacientes extends javax.swing.JPanel {
         );
 
         jPanel2.setBackground(new java.awt.Color(82, 97, 107));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Black", 0, 14))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Black", 0, 14))); // NOI18N
         jPanel2.setForeground(new java.awt.Color(221, 221, 221));
         jPanel2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
@@ -358,6 +362,14 @@ public class VistaPacientes extends javax.swing.JPanel {
         jD_Fecha.setForeground(new java.awt.Color(27, 38, 44));
         jD_Fecha.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
 
+        jLabel9.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(221, 221, 221));
+        jLabel9.setText("Diagnostico:");
+
+        JTA_Diagnostico.setBackground(new java.awt.Color(255, 253, 249));
+        JTA_Diagnostico.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        JTA_Diagnostico.setForeground(new java.awt.Color(27, 38, 44));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -372,17 +384,22 @@ public class VistaPacientes extends javax.swing.JPanel {
                     .addComponent(jLabel4)
                     .addComponent(jLabel1)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel8))
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JTA_Telefono)
+                    .addComponent(JTA_Telefono, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
                     .addComponent(JTA_MotivoConsulta)
                     .addComponent(JTA_Ocupacion)
                     .addComponent(JTA_Edad)
                     .addComponent(JTA_Nombre)
                     .addComponent(JTA_ID)
-                    .addComponent(JCB_Genero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jD_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JTA_Diagnostico)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JCB_Genero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jD_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(20, 20, 20))
         );
         jPanel2Layout.setVerticalGroup(
@@ -412,7 +429,11 @@ public class VistaPacientes extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(JTA_MotivoConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(JTA_Diagnostico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel7)
                     .addComponent(jD_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -420,7 +441,7 @@ public class VistaPacientes extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(JTA_Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -456,6 +477,7 @@ public class VistaPacientes extends javax.swing.JPanel {
                 || !ValidadorPacientes.campoNoVacio(JTA_Telefono.getText(), "Teléfono")
                 || !ValidadorPacientes.campoNoVacio(JTA_Ocupacion.getText(), "Ocupación")
                 || !ValidadorPacientes.campoNoVacio(JTA_MotivoConsulta.getText(), "Motivo de Consulta")
+                || !ValidadorPacientes.campoNoVacio(JTA_Diagnostico.getText(), "Diagnostico")
                 || !ValidadorPacientes.esNumeroEntero(JTA_Edad.getText(), "Edad")
                 || !ValidadorPacientes.fechaNoNula(jD_Fecha.getDate(), "Fecha de consulta")
                 || !ValidadorPacientes.esMayorQueCero(Integer.parseInt(JTA_Edad.getText()), "Edad")) {
@@ -484,6 +506,7 @@ public class VistaPacientes extends javax.swing.JPanel {
                 JCB_Genero.getSelectedItem().toString(), // Género seleccionado del JComboBox
                 JTA_Ocupacion.getText(), // Ocupación
                 JTA_MotivoConsulta.getText(),
+                JTA_Diagnostico.getText(),
                 new java.sql.Date(jD_Fecha.getDate().getTime()), // Fecha de consulta
                 JTA_Telefono.getText() // Teléfono
         );
@@ -569,6 +592,7 @@ public class VistaPacientes extends javax.swing.JPanel {
                 || !ValidadorPacientes.campoNoVacio(JTA_Telefono.getText(), "Teléfono")
                 || !ValidadorPacientes.campoNoVacio(JTA_Ocupacion.getText(), "Ocupación")
                 || !ValidadorPacientes.campoNoVacio(JTA_MotivoConsulta.getText(), "Motivo de consulta")
+                || !ValidadorPacientes.campoNoVacio(JTA_Diagnostico.getText(), "Diagnostico")
                 || !ValidadorPacientes.fechaNoNula(jD_Fecha.getDate(), "Fecha de consulta")
                 || !ValidadorPacientes.campoNoVacio(JCB_Genero.getSelectedItem() != null ? JCB_Genero.getSelectedItem().toString() : "", "Género")) {
             return; // Detiene la ejecución si alguna validación falla
@@ -600,6 +624,7 @@ public class VistaPacientes extends javax.swing.JPanel {
         seleccionado.setSexo(JCB_Genero.getSelectedItem().toString()); // Género seleccionado del JComboBox
         seleccionado.setOcupacion(JTA_Ocupacion.getText());
         seleccionado.setMotivoConsulta(JTA_MotivoConsulta.getText());
+        seleccionado.setDiagnostico(JTA_Diagnostico.getText());
         seleccionado.setTelefono(JTA_Telefono.getText());
 
         try {
@@ -696,6 +721,7 @@ public class VistaPacientes extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> JCB_Genero;
     private javax.swing.JTextField JTA_BuscaID;
     private javax.swing.JTextField JTA_BuscaNombre;
+    private javax.swing.JTextField JTA_Diagnostico;
     private javax.swing.JTextField JTA_Edad;
     private javax.swing.JTextField JTA_ID;
     private javax.swing.JTextField JTA_MotivoConsulta;
@@ -718,6 +744,7 @@ public class VistaPacientes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

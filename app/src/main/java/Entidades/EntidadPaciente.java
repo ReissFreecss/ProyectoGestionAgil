@@ -10,16 +10,18 @@ public class EntidadPaciente {
     private String sexo;
     private String ocupacion;
     private String motivoConsulta;
+    private String diagnostico;
     private Date fechaConsulta;
     private String telefono;
 
-    public EntidadPaciente(Integer idPaciente, String nombreCompleto, int edad, String sexo, String ocupacion, String motivoConsulta, Date fechaConsulta, String telefono) {
+    public EntidadPaciente(Integer idPaciente, String nombreCompleto, int edad, String sexo, String ocupacion, String motivoConsulta, String diagnostico, Date fechaConsulta, String telefono) {
         this.idPaciente = idPaciente; // Permitir que sea null
         this.nombreCompleto = nombreCompleto;
         this.edad = edad;
         this.sexo = sexo;
         this.ocupacion = ocupacion;
         this.motivoConsulta = motivoConsulta;
+        this.diagnostico = diagnostico;
         this.fechaConsulta = fechaConsulta;
         this.telefono = telefono;
     }
@@ -71,6 +73,14 @@ public class EntidadPaciente {
 
     public void setMotivoConsulta(String motivoConsulta) {
         this.motivoConsulta = motivoConsulta;
+    }
+    
+    public String getDiagnostico() {
+        return diagnostico;
+    }
+
+    public void setDiagnostico(String diagnostico) {
+        this.diagnostico = diagnostico;
     }
 
     public Date getFechaConsulta() {
